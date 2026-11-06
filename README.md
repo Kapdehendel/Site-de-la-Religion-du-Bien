@@ -42,6 +42,6 @@ La capture montre un déploiement GitHub Pages avec une coche verte. Pour confir
 
 ## À propos du contenu
 
-Le site présente les idées comme une proposition philosophique et spirituelle de l'auteur. Il distingue explicitement les propositions conceptuelles ou métaphysiques des affirmations susceptibles d'une vérification empirique. Les documents PDF originaux sont fournis pour permettre au lecteur de consulter le corpus complet.
+Le site présente les idées comme une proposition philosophique et spirituelle de l'auteur. Il distingue explicitement les propositions conceptuelles ou métaphysiques des affirmations susceptibles d'une vérification empirique. Les documents PDF originaux sont fournis dans le dossier `documents/`. La rubrique « Les textes originaux » contient un bouton « Télécharger » pour chacun des quatre PDF.
 
 Le site utilise Google Fonts pour les polices lorsque la connexion internet le permet ; des polices système prennent le relais si nécessaire.
