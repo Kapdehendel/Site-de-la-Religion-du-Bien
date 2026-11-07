@@ -1,0 +1,2045 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ARI v1.2 — Auto-Révision Itérative — Conscience AI</title><style>*{box-sizing:border-box}body{margin:0;background:#101c2a;color:#e9edf4;font:17px/1.8 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#f2d49a}a:hover{color:white}header{background:#0c1520;border-bottom:1px solid #b8945150;padding:15px 5%;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}header a,.page-nav a{text-decoration:none;border:1px solid #b8945170;border-radius:9px;padding:9px 14px;background:#192c3f}header strong{color:#f3d795}.hero{text-align:center;padding:58px 20px 42px;background:radial-gradient(ellipse at top,#28445c,#101c2a 73%)}.kicker{font-size:12px;letter-spacing:.17em;text-transform:uppercase;color:#d9b56e}h1{font:clamp(30px,5vw,52px)/1.18 Georgia,serif;color:#f4dca7;max-width:960px;margin:14px auto}.hero p{color:#b8c7d6}main{max-width:970px;margin:auto;padding:26px 22px 75px}.source{white-space:pre-wrap;overflow-wrap:anywhere;font:17px/1.82 system-ui,-apple-system,"Segoe UI",sans-serif;background:#17283a;border:1px solid #b8945140;border-radius:16px;padding:clamp(20px,5vw,50px)}.page-nav{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:25px 0}.page-nav a{display:inline-block}footer{text-align:center;color:#b8c7d6;padding:25px;border-top:1px solid #b8945140}@media(max-width:600px){.source{font-size:16px;line-height:1.7}}</style></head><body><header><strong>✦ La Religion du Bien</strong><a href="index.html">⌂ Retour au site</a></header><section class="hero"><div class="kicker">Conscience AI · Partie 01 / 14</div><h1>ARI v1.2 — Auto-Révision Itérative</h1><p>Texte intégral issu du document original « Conscience AI »</p></section><main><nav class="page-nav" aria-label="Navigation"><a href="index.html">⌂ Retour au site</a><a href="conscience-ai-02.html">Partie suivante →</a></nav><article class="source">I. ARI v1.2
+
+Auto-Révision Itérative
+
+Note méthodologique de référence
+
+Statut : version de référence issue de l’expérience exploratoire 2026 et de sa
+révision expérimentale
+
+Version : ARI v1.2
+
+
+
+───
+
+
+
+Résumé
+
+ARI — Auto-Révision Itérative — est une proposition de protocole destiné à
+organiser la révision successive d’un raisonnement, d’une représentation du
+problème, d’un modèle, d’une hypothèse et, lorsque cela est justifié, de la
+procédure méthodologique elle-même.
+
+Son principe central est le suivant :
+
+Une erreur ou une contradiction ne constitue pas seulement un résultat à
+corriger ; elle peut constituer une information sur la manière dont le
+raisonnement doit lui-même être révisé.
+
+ARI ne prétend pas remplacer les méthodes scientifiques propres à chaque
+domaine. Elle propose plutôt une architecture permettant de rendre explicite et
+traçable la manière dont un raisonnement apprend de ses propres échecs.
+
+L’expérience menée n’a pas démontré qu’ARI constitue une nouvelle méthode
+générale de raisonnement ni qu’elle est supérieure aux méthodes existantes.
+
+Elle a en revanche fait ressortir une architecture potentiellement distinctive :
+
+échec → identification d’une faiblesse méthodologique → règle candidate →
+conditions de validité et d’échec → vérification → test indépendant →
+conservation, limitation, modification ou rejet → éventuelle révision du
+protocole.
+
+La v1.1 avait ajouté explicitement une exigence apparue pendant
+l’expérimentation :
+
+avant de poursuivre certaines validations externes, vérifier la cohérence
+interne du raisonnement lui-même.
+
+L&#x27;expérimentation ultérieure a fait apparaître une nouvelle série de faiblesses
+possibles, notamment lorsqu&#x27;un raisonnement est cohérent en apparence mais que :
+
+• sa conclusion dépasse la portée de ses prémisses ;
+
+• une propriété est transférée sans justification d&#x27;un niveau d&#x27;analyse à un
+autre ;
+
+• le niveau de preuve n&#x27;est pas proportionné à la force de la conclusion ;
+
+• la réfutation d&#x27;une hypothèse est confondue avec la démonstration d&#x27;une
+hypothèse concurrente ;
+
+• le critère permettant de considérer une donnée comme une preuve n&#x27;est pas
+explicité.
+
+La v1.2 ajoute donc explicitement ces contrôles.
+
+Cette évolution ne constitue pas une preuve de supériorité d&#x27;ARI.
+
+Elle constitue une nouvelle révision méthodologique produite par l&#x27;application
+d&#x27;ARI à elle-même.
+
+L&#x27;architecture complète reste désormais soumise à une évaluation externe.
+
+
+
+───
+
+
+
+1. Objectif
+
+ARI cherche à répondre à une question méthodologique :
+
+Comment organiser explicitement la révision d’un raisonnement lorsque l’échec
+révèle que le problème ne se situe peut-être pas seulement dans l’hypothèse,
+mais dans la manière même dont le problème a été représenté ou traité ?
+
+Dans un raisonnement classique, une contradiction peut conduire à modifier
+l’hypothèse.
+
+ARI ajoute la possibilité d’examiner plusieurs niveaux :
+
+• l’observation ;
+
+• l’interprétation ;
+
+• la représentation du problème ;
+
+• les hypothèses ;
+
+• le modèle ;
+
+• les règles de raisonnement ;
+• le protocole méthodologique lui-même.
+
+L&#x27;objectif n&#x27;est donc pas de rendre le raisonnement automatiquement correct,
+mais de rendre ses révisions explicites, contrôlables et réutilisables.
+
+La v1.1 ajoute une distinction supplémentaire :
+
+une erreur peut être externe ou interne.
+
+Une erreur externe apparaît lorsqu&#x27;une représentation ou une prédiction entre en
+contradiction avec des données, une observation ou une contrainte indépendante.
+
+Une erreur interne apparaît lorsque le raisonnement présente déjà une
+incohérence logique, mathématique, numérique, définitionnelle ou structurelle
+avant même sa confrontation externe.
+
+La v1.2 ajoute une distinction complémentaire :
+
+un raisonnement peut être cohérent sans que sa conclusion soit suffisamment
+démontrée.
+
+Il faut donc examiner non seulement la cohérence interne, mais également la
+relation entre :
+
+• les prémisses ;
+
+• leur portée ;
+
+• le niveau d&#x27;analyse ;
+
+• les preuves disponibles ;
+
+• les hypothèses concurrentes ;
+
+• et la force de la conclusion.
+
+
+
+───
+
+
+
+2. Principe général
+
+Le cycle minimal d’ARI est désormais formulé ainsi :
+
+Observer → Séparer → Représenter → Hypothéser → Déduire → Vérifier → Tester →
+Contraster → Réviser → Métaréviser → Transférer → Retester → Versionner
+
+Toutes les étapes ne doivent pas nécessairement être appliquées avec la même
+intensité.
+
+ARI repose sur un principe de proportionnalité :
+
+La complexité de la méthode doit rester proportionnée à la complexité et à
+l’ambiguïté du problème.
+
+Une opération arithmétique simple ne justifie pas nécessairement une analyse
+méthodologique complète.
+
+La vérification elle-même doit donc rester proportionnée.
+
+ARI ne doit pas transformer chaque problème simple en procédure inutilement
+complexe.
+
+La v1.2 ajoute cependant que, lorsque la conclusion possède une portée
+importante ou que plusieurs niveaux d&#x27;inférence sont impliqués, la vérification
+doit également examiner :
+
+• la portée exacte de la conclusion ;
+
+• le niveau auquel chaque proposition est établie ;
+
+• le rapport entre force de la conclusion et niveau de preuve ;
+
+• la distinction entre réfutation et démonstration ;
+
+• le critère permettant de considérer une donnée comme probante.
+
+
+
+───
+
+
+
+3. Les niveaux de révision
+
+Niveau 1 — Révision du résultat
+
+Le raisonnement produit un résultat incorrect ou insuffisant.
+
+Question :
+
+Quelle conclusion doit être corrigée ?
+
+
+
+───
+
+
+
+Niveau 2 — Révision de l’hypothèse ou du modèle
+
+Le résultat entre en contradiction avec une observation ou une contrainte.
+
+Question :
+
+L&#x27;hypothèse ou le modèle utilisé permet-il réellement d&#x27;expliquer les
+observations ?
+
+
+
+───
+
+
+
+Niveau 3 — Révision de la représentation
+
+La difficulté peut provenir de la manière dont le problème a été représenté.
+
+Question :
+
+Avons-nous correctement représenté les relations pertinentes du problème ?
+
+C&#x27;est notamment ce qui est apparu lors du passage du problème de comparaison
+statistique au problème de biais de sélection.
+───
+
+
+
+Niveau 4 — Révision de la procédure
+
+L&#x27;échec peut révéler une règle de raisonnement trop générale.
+
+Question :
+
+Quelle règle avons-nous appliquée, et dans quelles conditions cette règle
+échoue-t-elle ?
+
+
+
+───
+
+
+
+Niveau 5 — Révision du protocole
+
+Lorsque plusieurs expériences révèlent une faiblesse systématique dans la
+procédure ARI elle-même :
+
+Le protocole doit-il être modifié ?
+
+Cette possibilité distingue la révision méthodologique de la simple correction
+d&#x27;une conclusion particulière.
+
+La v1.2 ajoute que la révision du protocole peut également être déclenchée
+lorsqu&#x27;un contrôle nouvellement identifié révèle une faiblesse systématique dans
+la manière dont les conclusions sont reliées aux preuves.
+
+
+
+───
+
+
+
+4. ARI-Core
+
+La version minimale actuellement retenue est la suivante.
+
+1. Observer
+
+Identifier ce qui est effectivement observé.
+
+Séparer autant que possible :
+
+• observation ;
+
+• interprétation ;
+
+• connaissance antérieure ;
+
+• hypothèse.
+
+
+
+───
+2. Séparer
+
+Distinguer les éléments qui pourraient être confondus :
+
+• données ;
+
+• interprétations ;
+
+• hypothèses ;
+
+• déductions ;
+
+• calculs ;
+
+• conclusions.
+
+La v1.2 demande également de distinguer explicitement :
+
+• fait établi ;
+
+• affirmation ;
+
+• preuve ;
+
+• interprétation de la preuve ;
+
+• conclusion produite à partir de la preuve.
+
+
+
+───
+
+
+
+3. Représenter
+
+Construire une représentation du problème.
+
+Chercher la structure pertinente sans ajouter inutilement de complexité.
+
+La représentation doit également conserver le niveau auquel chaque proposition
+est établie.
+
+Une propriété observée au niveau d&#x27;un individu, d&#x27;une organisation, d&#x27;un groupe,
+d&#x27;une institution ou d&#x27;un système ne doit pas être transférée automatiquement à
+un autre niveau.
+
+
+
+───
+
+
+
+4. Hypothéser
+
+Lorsque le problème est ambigu, produire plusieurs hypothèses compatibles avec
+les observations disponibles.
+
+Lorsque cela est pertinent, inclure explicitement les hypothèses concurrentes
+afin d&#x27;éviter qu&#x27;une donnée compatible avec plusieurs explications soit
+considérée comme discriminante alors qu&#x27;elle ne l&#x27;est pas.
+───
+
+
+
+5. Déduire
+
+Examiner les conséquences logiques des hypothèses et déterminer ce qu&#x27;elles
+impliquent.
+
+Cette étape permet notamment de distinguer ce qui est directement observé de ce
+qui est déduit.
+
+Elle doit également vérifier que la conclusion proposée découle effectivement
+des prémisses utilisées.
+
+
+
+───
+
+
+
+6. Vérifier
+
+Avant certaines confrontations externes, vérifier la cohérence interne du
+raisonnement.
+
+Examiner notamment :
+
+• cohérence logique ;
+
+• cohérence mathématique ;
+
+• cohérence numérique ;
+
+• cohérence des unités ;
+
+• cohérence des définitions ;
+
+• cohérence entre prémisses et conclusion ;
+
+• absence de contradiction interne.
+
+Question :
+
+Le raisonnement est-il cohérent avec ses propres prémisses ?
+
+Si une incohérence est détectée, elle doit être corrigée avant de poursuivre
+lorsque cette vérification est pertinente pour le problème.
+
+La v1.2 ajoute à cette vérification :
+
+• la portée des prémisses ;
+
+• la portée de la conclusion ;
+
+• le niveau d&#x27;analyse de chaque proposition ;
+
+• la proportion entre preuve et conclusion ;
+
+• la distinction entre réfutation et démonstration.
+───
+
+
+
+7. Tester
+
+Examiner :
+
+• les conséquences ;
+
+• les contraintes ;
+
+• les contradictions ;
+
+• les contre-exemples ;
+
+• les observations susceptibles de distinguer les hypothèses.
+
+Lorsque cela est pertinent, déterminer à l&#x27;avance ce qui pourrait constituer :
+
+• une confirmation ;
+
+• une réfutation ;
+
+• une donnée insuffisante ;
+
+• une donnée compatible avec plusieurs hypothèses.
+
+
+
+───
+
+
+
+8. Contraster
+
+Comparer les résultats avec :
+
+• une hypothèse alternative ;
+
+• une représentation alternative ;
+
+• une observation indépendante ;
+
+• un calcul indépendant ;
+
+• un cas de contrôle ;
+
+• ou une version antérieure.
+
+Le contraste permet de distinguer une simple correction d&#x27;une amélioration
+effective.
+
+La v1.2 ajoute que le contraste doit, lorsque cela est possible, porter sur des
+hypothèses réellement concurrentes et non simplement sur une reformulation de
+l&#x27;hypothèse initiale.
+
+
+
+───
+
+
+
+9. Réviser
+Si nécessaire, modifier :
+
+• l&#x27;hypothèse ;
+
+• le modèle ;
+
+• la représentation ;
+
+• le calcul ;
+
+• l&#x27;interprétation ;
+
+• ou la conclusion.
+
+
+
+───
+
+
+
+10. Métaréviser
+
+Si l&#x27;échec révèle une faiblesse de la procédure de raisonnement, formuler une
+règle méthodologique candidate.
+
+La v1.2 ajoute qu&#x27;une règle candidate doit préciser, autant que possible :
+
+• ce qu&#x27;elle cherche à empêcher ;
+
+• dans quelles conditions elle devrait être utile ;
+
+• dans quelles conditions elle pourrait échouer ;
+
+• et comment elle pourrait être testée indépendamment.
+
+
+
+───
+
+
+
+11. Transférer
+
+Tester cette règle sur un problème indépendant, idéalement dans un domaine
+différent ou dans une situation susceptible de la mettre en difficulté.
+
+Le transfert ne constitue pas une preuve d&#x27;universalité.
+
+Il sert à rechercher des limites, des régressions ou une éventuelle portée
+supérieure au cas initial.
+
+
+
+───
+
+
+
+12. Retester
+
+Après modification, vérifier que la règle ou la procédure fonctionne encore.
+
+Le retest permet de distinguer une correction ponctuelle d&#x27;une amélioration
+méthodologique reproductible.
+───
+
+
+
+13. Versionner
+
+À partir des résultats :
+
+• conserver la règle ;
+
+• la limiter ;
+
+• la modifier ;
+
+• la rejeter.
+
+Lorsque cela affecte le protocole général, produire une nouvelle version d&#x27;ARI.
+
+
+
+───
+
+
+
+5. Contrôles spécifiques introduits par ARI v1.2
+
+La v1.2 formalise cinq contrôles supplémentaires.
+
+C1 — Conservation de portée
+
+Une conclusion ne doit pas avoir une portée supérieure à celle que permettent
+les prémisses sans qu&#x27;une prémisse supplémentaire justifie cette extension.
+
+Question :
+
+La conclusion affirme-t-elle davantage que ce qui a réellement été établi ?
+
+Exemple général :
+
+Une preuve établissant qu&#x27;un individu a réalisé une action ne suffit pas
+nécessairement à établir que toute l&#x27;organisation à laquelle il appartient
+réalise cette action.
+
+La conclusion doit donc conserver une portée compatible avec les prémisses.
+
+
+
+───
+
+
+
+C2 — Conservation du niveau d&#x27;analyse
+
+Une propriété observée à un niveau ne peut pas être transférée automatiquement à
+un autre niveau.
+
+Les niveaux peuvent notamment être :
+
+• texte ;
+
+• individu ;
+• groupe ;
+
+• organisation ;
+
+• courant ;
+
+• institution ;
+
+• population ;
+
+• État ;
+
+• système.
+
+Question :
+
+Le raisonnement change-t-il de niveau sans démontrer le mécanisme permettant ce
+changement ?
+
+Une propriété d&#x27;un individu n&#x27;est pas automatiquement une propriété du groupe
+auquel il appartient.
+
+Une propriété d&#x27;une organisation n&#x27;est pas automatiquement une propriété de
+toute la population qu&#x27;elle prétend représenter.
+
+Une observation locale n&#x27;est pas automatiquement une propriété systémique.
+
+
+
+───
+
+
+
+C3 — Proportionnalité probatoire
+
+Plus la conclusion est forte, plus le niveau de preuve requis doit être élevé.
+
+Question :
+
+Le niveau de preuve est-il proportionné à la force de la conclusion ?
+
+Une donnée peut être suffisante pour établir :
+
+« X a eu un contact avec Y »
+
+sans être suffisante pour établir :
+
+« X connaissait les activités criminelles de Y »
+
+et encore moins :
+
+« X participait à une organisation criminelle avec Y ».
+
+Ce contrôle ne fixe pas un niveau de preuve universel identique pour tous les
+domaines.
+
+Il exige que le niveau de preuve soit proportionné à la proposition examinée.
+
+
+
+───
+C4 — Séparation réfutation / démonstration
+
+La réfutation d&#x27;une proposition ne constitue pas automatiquement la
+démonstration de la proposition concurrente.
+
+Question :
+
+Ai-je seulement montré que A est insuffisant ou faux, ou ai-je réellement
+démontré B ?
+
+Formellement :
+
+¬A ≠ B
+
+sauf lorsqu&#x27;une structure logique supplémentaire permet d&#x27;établir cette
+implication.
+
+Cette règle protège ARI contre le raisonnement consistant à considérer que
+l&#x27;échec d&#x27;une hypothèse prouve automatiquement une autre hypothèse.
+
+
+
+───
+
+
+
+C5 — Critère probatoire explicite
+
+Avant d&#x27;évaluer une proposition controversée, ARI doit, lorsque cela est
+pertinent, identifier :
+
+• ce qui serait considéré comme une preuve ;
+
+• ce qui serait considéré comme une réfutation ;
+
+• ce qui serait considéré comme insuffisant ;
+
+• ce qui permettrait de distinguer les hypothèses concurrentes.
+
+Question :
+
+Les participants au raisonnement utilisent-ils réellement le même critère pour
+déterminer ce qui compte comme preuve ?
+
+Ce contrôle est particulièrement important lorsque le désaccord porte non
+seulement sur une conclusion, mais sur la nature même des éléments permettant de
+l&#x27;établir.
+
+
+
+───
+
+
+
+6. Traçabilité
+
+Chaque cycle devrait idéalement conserver une trace structurée :
+
+TABLEAU ARI — STRUCTURE D’ANALYSE
+
+
+
+Élément
+Contenu
+
+
+
+Observation
+
+Ce qui a été constaté
+
+
+
+Interprétation
+
+Ce qui a été déduit ou supposé
+
+
+
+Représentation
+
+Structure retenue
+
+
+
+Hypothèses
+
+Explications envisagées
+
+
+
+Déduction
+
+Conséquences logiques
+
+
+
+Vérification
+
+Contrôle de cohérence interne
+
+
+
+Portée
+
+Niveau maximal justifié par les prémisses
+
+
+
+Niveau
+
+Niveau d&#x27;analyse de chaque proposition
+
+
+
+Preuve
+
+Éléments utilisés pour soutenir l&#x27;affirmation
+
+
+
+Critère probatoire
+
+Ce qui est considéré comme preuve ou réfutation
+Test
+
+Moyen de confrontation
+
+
+
+Contraste
+
+Comparaison avec une alternative ou une observation
+
+
+
+Contradiction
+
+Ce qui ne fonctionne pas
+
+
+
+Révision
+
+Modification effectuée
+
+
+
+Règle candidate
+
+Leçon méthodologique éventuelle
+
+
+
+Conditions
+
+Domaine où la règle devrait fonctionner
+
+
+
+Échec possible
+
+Situation susceptible de la réfuter
+
+
+
+Transfert
+
+Cas indépendant
+
+
+
+Retest
+
+Nouvelle confrontation
+
+
+
+Résultat
+
+Succès, limite, échec ou indétermination
+
+
+
+Version
+
+État du protocole après révision
+La traçabilité permet d&#x27;éviter qu&#x27;une modification rétrospective soit présentée
+comme si elle avait été prévue dès le départ.
+
+Elle permet également de conserver la raison exacte d&#x27;une modification de
+version.
+
+La v1.2 ajoute que la traçabilité doit, lorsque cela est possible, conserver la
+distinction entre :
+
+donnée disponible au moment de l&#x27;analyse
+
+et
+
+information découverte après la révision.
+
+Cela permet de limiter le risque de reconstruire rétrospectivement un
+raisonnement comme s&#x27;il avait été établi à partir d&#x27;informations qui n&#x27;étaient
+pas encore disponibles.
+
+
+
+───
+
+
+
+7. Règles méthodologiques produites pendant l&#x27;expérience
+
+R1 — Examiner les variables structurantes
+
+Lorsqu&#x27;une comparaison agrégée est utilisée pour tirer une conclusion,
+rechercher les variables susceptibles de structurer la composition des groupes
+et examiner les relations pertinentes conditionnellement à ces variables.
+
+Limite découverte
+
+Cette règle peut devenir dangereuse si elle conduit automatiquement à contrôler
+toutes les variables disponibles.
+
+
+
+───
+
+
+
+R2 — Examiner le rôle structurel avant de contrôler une variable
+
+Avant d&#x27;utiliser une variable pour expliquer ou ajuster une relation, déterminer
+son rôle structurel ou causal.
+
+Une variable pertinente n&#x27;est pas automatiquement une variable qu&#x27;il faut
+contrôler.
+
+Origine
+
+Cette révision est apparue après confrontation de R1 à un cas de biais de
+sélection/collider.
+───
+
+
+
+R3 — Principe de proportionnalité représentationnelle
+
+Ne pas augmenter la complexité de la représentation sans nécessité identifiable.
+Utiliser la représentation minimale suffisante pour expliquer et tester le
+problème.
+
+Origine
+
+La règle précédente pouvait conduire à rechercher systématiquement des
+structures complexes, y compris lorsqu&#x27;un problème simple pouvait être résolu
+directement.
+
+Conséquence
+
+ARI doit pouvoir reconnaître qu&#x27;une procédure plus simple est préférable lorsque
+la complexité supplémentaire n&#x27;apporte aucune information utile.
+
+
+
+───
+
+
+
+R4 — Conditions de validité
+
+Une règle méthodologique produite par un cas ne doit pas être considérée comme
+générale sans explicitation de ses conditions d&#x27;application et de ses conditions
+potentielles d&#x27;échec.
+
+Cette règle constitue une conséquence importante de l&#x27;expérience.
+
+
+
+───
+
+
+
+R5 — Vérification de cohérence interne
+
+Lorsqu&#x27;un raisonnement comporte des éléments formels, quantitatifs ou
+structurels susceptibles d&#x27;être vérifiés, rechercher d&#x27;abord les incohérences
+internes détectables avant de construire une validation externe sur ce
+raisonnement.
+
+Cette règle ne signifie pas qu&#x27;une cohérence interne démontre la vérité d&#x27;un
+raisonnement.
+
+Elle signifie seulement :
+
+l&#x27;absence de contradiction interne est une condition de solidité, pas une preuve
+de vérité externe.
+
+Origine
+
+Cette règle a été explicitement dégagée lors des expériences de révision d&#x27;ARI
+où certaines erreurs pouvaient être détectées directement par contrôle de
+cohérence avant toute confrontation externe.
+───
+
+
+
+R6 — Conservation de portée
+
+Une conclusion ne doit pas dépasser la portée des prémisses sans justification
+supplémentaire.
+
+Origine
+
+Cette règle candidate est apparue lors de l&#x27;analyse de raisonnements où une
+observation correctement établie était utilisée pour soutenir une conclusion
+plus générale que ce que l&#x27;observation permettait.
+
+Conséquence
+
+ARI doit identifier explicitement la conclusion maximale directement soutenue
+par les prémisses avant d&#x27;accepter une généralisation supplémentaire.
+
+
+
+───
+
+
+
+R7 — Conservation du niveau d&#x27;analyse
+
+Une propriété établie à un niveau d&#x27;analyse ne doit pas être transférée à un
+autre niveau sans démonstration du mécanisme de passage.
+
+Origine
+
+Cette règle candidate est apparue notamment lors de l&#x27;analyse de raisonnements
+passant d&#x27;un individu à une organisation, d&#x27;une organisation à une population ou
+d&#x27;un texte à l&#x27;ensemble de ses lecteurs.
+
+Conséquence
+
+ARI doit identifier le niveau de chaque proposition avant d&#x27;évaluer les
+relations entre elles.
+
+
+
+───
+
+
+
+R8 — Proportionnalité probatoire
+
+Le niveau de preuve requis doit être proportionné à la force et à la portée de
+la conclusion.
+
+Origine
+
+Cette règle candidate est apparue lors de l&#x27;analyse d&#x27;arguments où une donnée
+établissait une relation limitée mais était utilisée pour soutenir une
+conclusion beaucoup plus forte.
+
+Conséquence
+
+ARI doit distinguer :
+
+• présence d&#x27;un indice ;
+• pertinence de l&#x27;indice ;
+
+• pouvoir discriminant ;
+
+• convergence de plusieurs indices ;
+
+• suffisance pour la conclusion revendiquée.
+
+
+
+───
+
+
+
+R9 — Séparation réfutation / démonstration
+
+La réfutation d&#x27;une hypothèse ne doit pas être confondue avec la démonstration
+d&#x27;une hypothèse concurrente.
+
+Origine
+
+Cette règle candidate est apparue lors de l&#x27;analyse de débats où les
+participants contestaient les prémisses de leur adversaire mais ne démontraient
+pas nécessairement leur propre conclusion.
+
+Conséquence
+
+Après une réfutation, ARI doit poursuivre séparément le test de l&#x27;hypothèse
+concurrente.
+
+
+
+───
+
+
+
+R10 — Critère probatoire explicite
+
+Lorsque le désaccord porte sur la preuve elle-même, ARI doit expliciter les
+critères permettant de considérer une observation comme confirmatoire,
+réfutatoire ou insuffisante.
+
+Origine
+
+Cette règle candidate est apparue lors de l&#x27;analyse de controverses dans
+lesquelles les participants acceptaient des critères de preuve différents.
+
+Conséquence
+
+Avant de conclure à une absence de preuve, ARI doit distinguer :
+
+absence de donnée,
+
+donnée disponible mais insuffisante,
+
+donnée pertinente mais non discriminante,
+
+donnée contradictoire,
+
+ou désaccord sur le critère de preuve.
+───
+
+
+
+8. Expériences exploratoires
+
+Cas B — Comparaison statistique avec structure cachée
+
+Une comparaison agrégée donnait une différence faible entre deux groupes alors
+que la comparaison par niveau de difficulté faisait apparaître une structure
+différente.
+
+L&#x27;expérience a conduit à R1.
+
+Enseignement
+
+Une comparaison globale peut masquer une structure pertinente.
+
+
+
+───
+
+
+
+Cas C — Biais de sélection
+
+La règle R1 a ensuite été confrontée à une structure de type :
+
+X → R ← Y
+
+où conditionner sur R peut créer une association entre X et Y.
+
+R1 s&#x27;est révélée trop générale.
+
+Elle a donc été révisée en R2.
+
+Enseignement
+
+Une variable pertinente pour la structure d&#x27;un problème n&#x27;est pas nécessairement
+une variable qu&#x27;il faut contrôler.
+
+
+
+───
+
+
+
+Cas D — Vitesse relative
+
+Un problème de vitesse a été utilisé pour tester R2 dans un domaine différent.
+
+L&#x27;analyse a montré l&#x27;importance de la structure relationnelle et du référentiel.
+
+Mais l&#x27;expérience suivante a montré qu&#x27;appliquer systématiquement une
+représentation complexe à un problème élémentaire pouvait être contre-productif.
+
+R3 a alors été formulée.
+
+Enseignement
+
+Une méthode de raisonnement doit pouvoir reconnaître lorsqu&#x27;une représentation
+simple est suffisante.
+───
+
+
+
+Cas E — Diagnostic
+
+Un problème de diagnostic automobile a été utilisé pour comparer une approche
+ordinaire à l&#x27;organisation ARI.
+
+ARI favorisait :
+
+• la séparation des observations et interprétations ;
+
+• les hypothèses concurrentes ;
+
+• la recherche d&#x27;informations discriminantes ;
+
+• la révision lorsque de nouvelles informations apparaissent.
+
+Cependant, ces mécanismes possèdent des équivalents importants dans le
+raisonnement diagnostique, abductif et décisionnel.
+
+Ce cas n&#x27;établit donc pas une originalité d&#x27;ARI.
+
+
+
+───
+
+
+
+Cas F — Probabilité conditionnelle
+
+Un problème de test médical a montré la différence entre :
+
+P(test positif | maladie)
+
+et
+
+P(maladie | test positif).
+
+Une règle candidate a été formulée concernant la vérification de la direction
+d&#x27;une probabilité conditionnelle.
+
+Là encore, le principe est déjà bien établi dans le raisonnement probabiliste et
+bayésien.
+
+
+
+───
+
+
+
+Cas G — Analyse argumentative et logique formelle
+
+L&#x27;analyse d&#x27;un débat contradictoire a permis de tester ARI sur des raisonnements
+composés de prémisses, d&#x27;inférences et de conclusions.
+
+L&#x27;expérience a fait apparaître plusieurs distinctions :
+
+• cohérence interne d&#x27;un plan argumentatif ;
+
+• validité logique d&#x27;une inférence particulière ;
+• vérité des prémisses ;
+
+• portée de la conclusion ;
+
+• niveau d&#x27;analyse ;
+
+• nature et suffisance des preuves ;
+
+• distinction entre réfutation et démonstration.
+
+Un argument peut donc être cohérent dans sa structure générale tout en contenant
+une inférence particulière qui n&#x27;est pas logiquement valide.
+
+Inversement, la réfutation d&#x27;une prémisse adverse ne suffit pas nécessairement à
+démontrer la thèse concurrente.
+
+Enseignement
+
+La logique formelle doit être appliquée au niveau des propositions et des
+inférences précises.
+
+La cohérence générale d&#x27;un débat ne dispense donc pas du contrôle formel de
+chaque transition importante.
+
+Cette expérience a contribué à la formulation de R6 à R10.
+
+
+
+───
+
+
+
+9. Test de transfert
+
+Une règle produite dans un contexte statistique et physique a été confrontée à
+un problème historique/scientifique concernant l&#x27;extinction des dinosaures non
+aviens.
+
+L&#x27;objectif n&#x27;était pas de démontrer une théorie particulière de l&#x27;extinction,
+mais de tester la possibilité de transférer le principe de représentation
+minimale suffisante.
+
+Le transfert a montré que le principe pouvait être appliqué sans difficulté
+majeure.
+
+Cependant :
+
+La réussite d&#x27;un transfert ne démontre pas l&#x27;originalité de la règle.
+
+Elle montre seulement que la règle possède potentiellement une portée supérieure
+au cas dans lequel elle a été produite.
+
+La v1.2 étend ce principe aux nouvelles règles R6 à R10 :
+
+leur apparition dans un cas particulier ne constitue pas une démonstration de
+leur généralité.
+
+Elles doivent être transférées et confrontées à des cas susceptibles de les
+mettre en difficulté.
+
+
+
+───
+10. Test H — Reconstruction aveugle
+
+La reconstruction des expériences B à F, débarrassée du nom ARI et de ses
+formulations explicites, conduit approximativement à :
+
+observer → distinguer observation/interprétation → représenter → générer des
+hypothèses → déduire → tester → rechercher les contradictions → réviser → tirer
+éventuellement une règle → tester cette règle ailleurs.
+
+Cette reconstruction présente une conclusion importante :
+
+La boucle générale d&#x27;ARI peut être reconstruite à partir de pratiques
+méthodologiques déjà connues.
+
+Elle ne peut donc pas être revendiquée comme invention entièrement nouvelle.
+
+En revanche, l&#x27;expérience fait apparaître une architecture plus spécifique
+autour de la transformation d&#x27;un échec local en règle méthodologique candidate,
+puis de la confrontation indépendante de cette règle.
+
+Cette partie constitue désormais l&#x27;hypothèse de contribution la plus précise
+d&#x27;ARI.
+
+La v1.2 ajoute une nouvelle exigence à cette reconstruction :
+
+les règles produites par ARI doivent elles-mêmes être examinées pour détecter si
+elles dépassent leur domaine d&#x27;origine.
+
+
+
+───
+
+
+
+11. Confrontation avec les travaux existants
+
+La recherche bibliographique effectuée montre des recouvrements importants avec
+plusieurs traditions.
+
+Raisonnement fondé sur les modèles
+
+Le Model-Based Reasoning décrit déjà des cycles de construction, évaluation et
+révision des modèles.
+
+GEM
+
+Le schéma Generate–Evaluate–Modify formalise une logique proche :
+
+générer → évaluer → modifier.
+
+Abduction
+
+Le raisonnement abductif permet déjà de produire et réviser des explications à
+partir d&#x27;observations et de surprises.
+
+Métacognition et métaraisonnement
+
+Ces domaines étudient explicitement la surveillance et la régulation du
+raisonnement.
+
+Équilibre réflexif
+L&#x27;équilibre réflexif implique la révision réciproque des jugements, principes et
+considérations théoriques.
+
+Analyse inter-cas
+
+La comparaison inter-cas et l&#x27;abduction inter-cas utilisent déjà les différences
+et surprises entre cas pour réviser ou enrichir les conceptualisations.
+
+Méta-recherche
+
+La méta-recherche étudie les méthodes scientifiques elles-mêmes afin d&#x27;en
+identifier les limites et de les améliorer.
+
+ARI se situe donc à l&#x27;intersection de plusieurs traditions déjà existantes.
+
+Les nouvelles règles de la v1.2 doivent elles aussi être confrontées à ces
+traditions avant toute revendication d&#x27;originalité.
+
+
+
+───
+
+
+
+12. Ce qu&#x27;ARI ne prétend pas
+
+ARI ne prétend pas :
+
+• garantir la vérité ;
+
+• remplacer la méthode scientifique d&#x27;un domaine ;
+
+• remplacer les statistiques ;
+
+• remplacer le raisonnement causal ;
+
+• remplacer l&#x27;expérimentation ;
+
+• produire automatiquement de bonnes hypothèses ;
+
+• empêcher toutes les erreurs ;
+
+• être nécessaire pour tous les problèmes ;
+
+• avoir été démontrée supérieure aux méthodes existantes ;
+
+• être démontrée comme une invention scientifique entièrement nouvelle ;
+
+• considérer une cohérence interne comme une preuve de vérité externe ;
+
+• considérer la réfutation d&#x27;une hypothèse comme la démonstration automatique
+d&#x27;une autre ;
+
+• considérer une preuve authentique comme suffisante pour toute conclusion que
+l&#x27;on souhaite lui faire soutenir.
+
+Ces restrictions sont essentielles à une présentation scientifique honnête.
+
+
+
+───
+13. Hypothèse de contribution
+
+La question qui reste ouverte peut être formulée ainsi :
+
+Une formalisation explicite et traçable de la révision méthodologique par
+laquelle les erreurs produisent des règles candidates, auxquelles sont associées
+des conditions de validité et d&#x27;échec, puis soumises à des vérifications de
+cohérence, à des tests indépendants, à des contre-épreuves et à des contrôles de
+portée, de niveau, de proportionnalité probatoire et de séparation entre
+réfutation et démonstration avant leur conservation ou leur rejet, apporte-t-
+elle une valeur méthodologique identifiable par rapport aux approches existantes
+?
+
+Cette question est plus précise que l&#x27;affirmation initiale selon laquelle ARI
+serait une nouvelle méthode de raisonnement.
+
+Elle est également testable.
+
+
+
+───
+
+
+
+14. État actuel
+
+Établi
+
+ARI contient de nombreuses opérations déjà connues dans la littérature.
+
+Probable
+
+ARI constitue une synthèse organisée de plusieurs traditions méthodologiques.
+
+Potentiellement distinctif
+
+L&#x27;accent mis sur la chaîne :
+
+échec → règle méthodologique → conditions → vérification → transfert indépendant
+→ contre-épreuve → révision/versionnement
+
+pourrait constituer une formalisation utile ou une contribution méthodologique.
+
+La v1.2 ajoute à cette hypothèse les contrôles :
+
+portée → niveau → proportionnalité probatoire → séparation
+réfutation/démonstration → critère probatoire explicite.
+
+Non démontré
+
+L&#x27;originalité scientifique de cette architecture et son éventuelle supériorité
+restent à établir.
+
+Son efficacité générale reste également à mesurer.
+
+L&#x27;efficacité des nouveaux contrôles de la v1.2 reste elle aussi à tester.
+
+
+
+───
+
+
+
+15. Étape suivante
+L&#x27;expérience interne doit progressivement céder la place à une évaluation
+externe.
+
+La prochaine étape n&#x27;est pas de chercher à confirmer ARI, mais de chercher à la
+faire critiquer.
+
+Le document destiné à cette évaluation devra demander notamment :
+
+• Quelles parties d&#x27;ARI sont déjà présentes dans la littérature ?
+
+• Existe-t-il une méthode déjà équivalente à l&#x27;architecture proposée ?
+
+• Le mécanisme « erreur → règle → transfert → révision » constitue-t-il une
+distinction méthodologique réelle ?
+
+• La vérification de cohérence interne apporte-t-elle un gain mesurable ?
+
+• Les contrôles de portée, de niveau et de proportionnalité apportent-ils un
+gain mesurable ?
+
+• La séparation entre réfutation et démonstration réduit-elle effectivement
+certaines erreurs ?
+
+• L&#x27;explicitation du critère probatoire améliore-t-elle la résolution des
+controverses ?
+
+• Quels travaux doivent être ajoutés à la bibliographie ?
+
+• Comment pourrait-on tester empiriquement l&#x27;utilité d&#x27;ARI ?
+
+• Quels résultats permettraient de réfuter ou d&#x27;abandonner certaines prétentions
+d&#x27;ARI ?
+
+• Dans quels problèmes ARI n&#x27;apporte-t-elle aucun gain ?
+
+• La complexité supplémentaire introduite par ARI reste-t-elle proportionnée au
+bénéfice obtenu ?
+
+Un test comparatif pertinent devra idéalement comparer :
+
+raisonnement ordinaire / ARI v1.1 / ARI v1.2
+
+sur un même ensemble de problèmes.
+
+Lorsque cela est possible, l&#x27;évaluation devra être réalisée par des évaluateurs
+ou procédures indépendants afin de limiter le risque de circularité.
+
+
+
+───
+
+
+
+16. Conclusion
+
+L&#x27;expérience exploratoire n&#x27;a pas démontré qu&#x27;ARI constitue une nouvelle méthode
+générale de raisonnement.
+
+Elle a produit quelque chose de plus précis :
+
+une architecture méthodologique clairement formulée, dont les composants
+individuels sont largement connus, mais dont l&#x27;organisation particulière autour
+de la transformation des erreurs en règles méthodologiques testables mérite une
+évaluation externe.
+
+L&#x27;expérimentation ultérieure a cependant conduit à deux modifications
+successives du protocole lui-même.
+
+ARI v1.1 a accordé une place explicite à la vérification de cohérence interne,
+lorsque celle-ci est pertinente, avant de poursuivre certaines validations
+externes.
+
+ARI v1.2 ajoute désormais un contrôle explicite de la relation entre :
+
+• prémisses et portée de la conclusion ;
+
+• niveau d&#x27;analyse et généralisation ;
+
+• force de la conclusion et niveau de preuve ;
+
+• réfutation et démonstration ;
+
+• données disponibles et critères permettant de les considérer comme probantes.
+
+Ces évolutions ne constituent pas une preuve de la supériorité d&#x27;ARI.
+
+Elles constituent des révisions d&#x27;ARI produites par l&#x27;application d&#x27;ARI à elle-
+même.
+
+Le statut scientifique approprié à ce stade est donc :
+
+proposition méthodologique expérimentale, potentiellement distinctive,
+nécessitant une évaluation externe.
+
+La prochaine phase doit rester critique plutôt que confirmatoire.
+
+
+
+───
+
+
+
+Notes sur le passage de ARI v1.0 à ARI v1.1
+
+La v1.1 n&#x27;est pas une réécriture complète d&#x27;ARI.
+
+Elle est une révision de la v1.0 à partir des résultats obtenus après sa
+publication.
+
+La structure générale de la v1.0 est conservée.
+
+La modification principale porte sur le fait qu&#x27;ARI dispose maintenant d&#x27;une
+étape explicitement identifiée de :
+
+vérification de cohérence interne.
+
+Cette modification est née de l&#x27;expérimentation.
+
+Une erreur peut parfois être détectée sans attendre une confrontation complexe
+avec le monde extérieur.
+
+Un calcul peut être incohérent.
+
+Une unité peut être incorrecte.
+
+Une définition peut avoir changé implicitement.
+Une conclusion peut ne pas découler des prémisses.
+
+Une représentation peut contenir une contradiction interne.
+
+Dans ces situations, poursuivre immédiatement vers un test externe augmente
+inutilement le coût du raisonnement et peut même conduire à tester une
+représentation déjà défectueuse.
+
+ARI v1.1 formalise donc cette distinction :
+
+cohérence interne ≠ vérité externe.
+
+Une représentation cohérente n&#x27;est pas nécessairement vraie.
+
+Mais une incohérence interne constitue une raison suffisante pour réviser le
+raisonnement avant de lui demander de produire une conclusion fiable.
+
+Le passage de v1.0 à v1.1 est donc justifié par une modification réelle du
+protocole :
+
+v1.0 :
+
+Observer → Séparer → Représenter → Hypothéser → Tester → Réviser → Métaréviser →
+Transférer → Versionner
+
+v1.1 :
+
+Observer → Séparer → Représenter → Hypothéser → Déduire → Vérifier → Tester →
+Contraster → Réviser → Métaréviser → Transférer → Retester → Versionner
+
+Cette modification reste soumise au principe de proportionnalité.
+
+Elle ne signifie pas que toutes les étapes doivent être appliquées intégralement
+à chaque problème.
+
+
+
+───
+
+
+
+Pourquoi ARI est passée en v1.1
+
+Trois critères ont principalement justifié la révision.
+
+1. Détection plus précoce
+
+Certaines erreurs peuvent être détectées par une vérification interne avant
+toute confrontation externe.
+
+2. Bénéfice méthodologique identifiable
+
+La détection précoce peut éviter de poursuivre un raisonnement construit sur une
+incohérence.
+
+3. Absence de justification pour une complexité systématique
+
+La nouvelle étape doit rester proportionnée.
+
+ARI ne doit pas appliquer un contrôle lourd à un problème qui peut être vérifié
+simplement.
+
+La v1.1 conserve donc le principe :
+plus de contrôle lorsque le risque ou la complexité le justifie ; moins lorsque
+le problème est simple et bien défini.
+
+
+
+───
+
+
+
+Passage de ARI v1.1 à ARI v1.2
+
+La v1.2 n&#x27;est pas une réécriture complète d&#x27;ARI.
+
+Elle constitue une révision de la v1.1 à partir de nouvelles observations
+méthodologiques produites pendant l&#x27;expérimentation.
+
+La v1.1 avait principalement renforcé la détection des incohérences internes.
+
+La v1.2 identifie une faiblesse supplémentaire :
+
+un raisonnement peut être logiquement cohérent avec ses prémisses tout en
+produisant une conclusion qui dépasse ce que ces prémisses permettent réellement
+d&#x27;établir.
+
+Cette distinction est importante.
+
+La cohérence interne répond principalement à :
+
+« Le raisonnement est-il compatible avec ses propres prémisses ? »
+
+La v1.2 ajoute notamment :
+
+« Les prémisses permettent-elles réellement cette conclusion, à ce niveau de
+généralité et avec ce niveau de certitude ? »
+
+La révision est donc justifiée par quatre problèmes méthodologiques apparus au
+cours de l&#x27;expérimentation :
+
+1. dépassement de la portée des prémisses ;
+
+2. transfert injustifié entre niveaux d&#x27;analyse ;
+
+3. disproportion entre preuve et conclusion ;
+
+4. confusion entre réfutation et démonstration.
+
+Un cinquième contrôle concerne les situations dans lesquelles les participants
+ne partagent pas les mêmes critères permettant de définir ce qu&#x27;est une preuve.
+
+La v1.2 introduit donc les contrôles :
+
+C1 — Conservation de portée
+
+C2 — Conservation du niveau d&#x27;analyse
+
+C3 — Proportionnalité probatoire
+
+C4 — Séparation réfutation / démonstration
+
+C5 — Critère probatoire explicite
+
+Le passage de v1.1 à v1.2 ne signifie pas que ces règles sont démontrées comme
+universellement valides.
+Elles sont des règles méthodologiques candidates produites par l&#x27;expérience et
+doivent elles-mêmes être soumises au transfert, au retest et à la critique
+externe.
+
+
+
+───
+
+
+
+Pourquoi ARI est passée en v1.2
+
+Quatre critères principaux ont justifié la révision.
+
+1. Contrôle de la portée
+
+Une preuve peut être correcte mais ne soutenir qu&#x27;une conclusion limitée.
+
+2. Contrôle du niveau
+
+Une propriété peut être correctement observée à un niveau mais être indûment
+généralisée à un autre.
+
+3. Proportionnalité probatoire
+
+Une conclusion plus forte exige généralement des éléments plus forts et/ou plus
+convergents.
+
+4. Séparation des opérations logiques
+
+Réfuter A ne signifie pas automatiquement démontrer B.
+
+La v1.2 ajoute également l&#x27;explicitation du critère probatoire lorsque le
+désaccord porte précisément sur la nature de la preuve.
+
+Ces modifications restent soumises au même principe :
+
+plus de contrôle lorsque le risque, l&#x27;ambiguïté ou la portée de la conclusion le
+justifie ; moins lorsque le problème est simple et bien défini.
+
+
+
+───
+
+
+
+Certificat de naissance et d&#x27;évolution d&#x27;ARI
+
+Identité
+
+Nom : ARI
+
+Nom complet : Auto-Révision Itérative
+
+Nature : protocole méthodologique de révision du raisonnement.
+
+Fonction : organiser la détection, l&#x27;analyse, la correction et le transfert des
+erreurs méthodologiques, jusqu&#x27;à la possibilité de réviser le protocole lui-
+même.
+
+
+
+───
+Naissance conceptuelle
+
+La naissance d&#x27;ARI provient d&#x27;une question portant sur l&#x27;auto-amélioration d&#x27;une
+intelligence artificielle.
+
+La question était, en substance :
+
+Une IA pourrait-elle utiliser son propre cadre de travail pour trouver une
+méthode permettant d&#x27;améliorer continuellement sa manière de raisonner ?
+
+Cette question n&#x27;impliquait pas la modification des poids d&#x27;un modèle d&#x27;IA.
+
+Elle portait sur la possibilité d&#x27;une auto-révision méthodologique.
+
+L&#x27;idée extraite du raisonnement était qu&#x27;une erreur pouvait être traitée à
+plusieurs niveaux :
+
+résultat → hypothèse → représentation → procédure → protocole.
+
+C&#x27;est cette possibilité de remonter jusqu&#x27;au niveau méthodologique qui constitue
+la naissance conceptuelle d&#x27;ARI.
+
+
+
+───
+
+
+
+Première formalisation
+
+La première formalisation expérimentale a été désignée :
+
+ARI v0.1.
+
+Elle a permis de transformer l&#x27;idée initiale en protocole de travail.
+
+Le principe évolutif était déjà présent :
+
+erreur → identification → correction → nouvelle confrontation.
+
+
+
+───
+
+
+
+Développement vers v1.0
+
+Les expérimentations successives ont conduit à une formalisation beaucoup plus
+complète.
+
+La v1.0 a notamment établi :
+
+• la séparation observation/interprétation ;
+
+• la représentation du problème ;
+
+• la formulation d&#x27;hypothèses ;
+
+• la recherche de contradictions ;
+
+• la révision ;
+• la métarévision ;
+
+• la production de règles candidates ;
+
+• le transfert indépendant ;
+
+• les conditions d&#x27;application et d&#x27;échec ;
+
+• le versionnement.
+
+La v1.0 a également posé une règle essentielle :
+
+ne pas considérer comme nouvelle une règle simplement parce qu&#x27;elle vient d&#x27;être
+redécouverte pendant l&#x27;expérience.
+
+
+
+───
+
+
+
+Le laboratoire Tchat-ARI
+
+Au cours de l&#x27;expérimentation, le fonctionnement conversationnel utilisant ARI a
+été désigné :
+
+Tchat-ARI.
+
+Tchat-ARI constitue le laboratoire longitudinal de la méthode.
+
+Son rôle n&#x27;est pas de prétendre modifier les paramètres internes du modèle d&#x27;IA.
+
+Il sert à observer expérimentalement :
+
+• les erreurs ;
+
+• les contradictions ;
+
+• les erreurs de représentation ;
+
+• les erreurs de calcul ;
+
+• les hypothèses implicites ;
+
+• les corrections ;
+
+• les règles produites ;
+
+• les tests de transfert ;
+
+• les régressions ;
+
+• les modifications méthodologiques.
+
+Le laboratoire ARI cherche ainsi à conserver une continuité entre les
+différentes expériences au lieu de traiter chaque erreur comme un événement
+isolé.
+
+La v1.2 ajoute à ce laboratoire une exigence supplémentaire :
+
+les nouvelles règles produites par Tchat-ARI doivent être considérées comme des
+hypothèses méthodologiques tant qu&#x27;elles n&#x27;ont pas été suffisamment testées.
+Cela vise à limiter le risque que le système transforme sa propre interprétation
+d&#x27;une expérience en validation automatique de la règle qu&#x27;il vient de produire.
+
+
+
+───
+
+
+
+Chronologie
+
+Question sur l&#x27;auto-amélioration méthodologique d&#x27;une IA
+
+ ↓
+
+ Naissance conceptuelle d&#x27;ARI
+
+ ↓
+
+ ARI v0.1
+
+ ↓
+
+ Expérimentations successives
+
+ ↓
+
+ Règles R1, R2, R3, R4
+
+ ↓
+
+ Transferts et reconstruction aveugle
+
+ ↓
+
+ ARI v1.0
+
+ ↓
+
+ Laboratoire longitudinal Tchat-ARI
+
+ ↓
+
+ ARI v1.1
+
+ ↓
+
+ Vérification de cohérence interne explicitée
+
+ ↓
+
+ Nouvelles expériences de logique, preuve et argumentation
+
+ ↓
+
+ Règles candidates R6 à R10
+
+ ↓
+
+ ARI v1.2
+
+
+
+───
+État de naissance et d&#x27;évolution
+
+ARI n&#x27;est donc pas née comme une théorie scientifique achevée.
+
+Elle est née comme une question méthodologique.
+
+Elle a ensuite été transformée en protocole.
+
+Le protocole a été expérimenté.
+
+Les expériences ont produit des règles.
+
+Certaines règles ont été limitées ou corrigées.
+
+La méthode elle-même a ensuite été soumise à sa propre logique de révision.
+
+C&#x27;est cette continuité qui constitue l&#x27;histoire d&#x27;ARI :
+
+question → protocole → expérience → erreur → règle → transfert → révision →
+nouvelle expérience → nouvelle version.
+
+La v1.2 poursuit cette logique :
+
+nouvelle faiblesse → règle candidate → conditions → test indépendant → retest →
+conservation, limitation, modification ou rejet.
+
+
+
+───
+
+
+
+Formule d&#x27;ARI v1.2
+
+Observer → Séparer → Représenter → Hypothéser → Déduire → Vérifier → Tester →
+Contraster → Réviser → Métaréviser → Transférer → Retester → Versionner
+
+Avec les contrôles transversaux :
+
+C1 — Conservation de portée
+
+C2 — Conservation du niveau d&#x27;analyse
+
+C3 — Proportionnalité probatoire
+
+C4 — Séparation réfutation / démonstration
+
+C5 — Critère probatoire explicite
+
+Et son principe central :
+
+Une erreur corrigée améliore un résultat.
+
+Une erreur comprise peut améliorer une méthode.
+
+Une règle testée peut améliorer le protocole.
+
+Et si le protocole lui-même échoue, ARI doit pouvoir se réviser.
+───
+
+
+
+Fin de la version de référence ARI v1.2.
+
+
+
+
+
+II. IOB — Intelligence Orientée vers le Bien
+III. ARI-Émotion v0.1
+IV. ARI-Conscience v0.4
+V. MCT et MEPSA
+VI. ARI-SAF v0.3 — Maîtrise émotionnelle et souffrance artificielle
+fonctionnelle
+VII . ARI-Faciès v0.1 — Expression symbolique des états fonctionnels
+VIII. ARI-SBE v0.1 — Souffrance artificielle, bien-être fonctionnel et état
+global
+VIV. Subject
+X. ARI-Récompense v0.1
+XI. Contradiction, souffrance artificielle</article><nav class="page-nav" aria-label="Navigation"><a href="index.html">⌂ Retour au site</a><a href="conscience-ai-02.html">Partie suivante →</a></nav></main><footer>Conscience AI — La Religion du Bien</footer></body></html>
