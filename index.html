@@ -164,7 +164,7 @@ function progress(){const max=document.documentElement.scrollHeight-innerHeight;
  <div id="guide-head"><strong>✦ ARIANE · Guide de la bibliothèque</strong><button id="guide-close" type="button" aria-label="Fermer le guide">✕</button></div>
  <div id="guide-messages" role="log" aria-live="polite"></div>
  <form id="guide-form"><input id="guide-question" type="text" maxlength="300" autocomplete="off" placeholder="Posez votre question…" aria-label="Votre question" required><button id="guide-send" type="submit">Envoyer</button></form>
- <div id="guide-notice">Gratuit, sans compte ni IA distante. Recherche documentaire : les réponses sont des pistes de lecture, pas une conversation générative.</div>
+ <div id="guide-notice">Gratuit, sans compte ni IA distante. Recherche dans les ressources référencées sur cette page, sans conversation générative.</div>
 </section>
 <script id="ariane-guide-script">
 (function(){
@@ -174,15 +174,40 @@ const norm=t=>(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCas
 const stop=new Set('le la les un une des du de d au aux a et ou est sont dans sur pour par avec que qui quoi qu ce cette ces son sa ses en ne pas pourquoi comment quel quelle quels quelles peut on il elle je tu nous vous site texte article parler explique moi bien religion'.split(' '));
 const words=t=>[...new Set(norm(t).replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(w=>w.length>2&&!stop.has(w)))];
 const pages=[];
-document.querySelectorAll('#chapitres .chapter-card,#reflexions .chapter-card,#cadre-complet .chapter-card,#conscience-ai .chapter-card,#recits .story-card').forEach(card=>{
-const a=card.querySelector('a[href]'),h=card.querySelector('h3');if(!a||!h)return;
-const sec=card.closest('section[id]');const section=sec?.querySelector('h2')?.textContent||'Bibliothèque';
-pages.push({title:h.textContent.trim(),url:a.href,section,desc:card.querySelector('p')?.textContent||''});
+const seen=new Set();
+function addPage(title,url,section,desc='',tags=''){
+ if(!url||url.startsWith('#')||url.startsWith('javascript:'))return;
+ const full=new URL(url,location.href).href;
+ if(seen.has(full))return;
+ seen.add(full);
+ pages.push({title, url:full,section,desc,tags});
+}
+document.querySelectorAll('main a[href],footer a[href]').forEach(a=>{
+ const card=a.closest('.chapter-card,.story-card');
+ const section=a.closest('section[id]');
+ const title=card?.querySelector('h3')?.textContent?.trim()||a.closest('.document-row')?.querySelector('strong')?.textContent?.trim()||a.textContent.trim();
+ const sectionName=section?.querySelector('h2')?.textContent?.trim()||'Ressources du site';
+ const desc=card?.querySelector('p')?.textContent?.trim()||a.closest('.document-row')?.querySelector('small')?.textContent?.trim()||'';
+ addPage(title,a.getAttribute('href'),sectionName,desc);
 });
-pages.push({title:'Observatoire IFH-TEC — Prédictions, vérifications et visualisations',url:new URL('observatoire-ifh-tec.html',location.href).href,section:'Laboratoire IFH-TEC',desc:'Cycle 1, Cycle 2, graphiques, hypothèses et méthode'});
-function msg(text,kind='bot'){const d=document.createElement('div');d.className='guide-msg guide-'+kind;d.textContent=text;messages.append(d);messages.scrollTop=messages.scrollHeight;return d}
-function link(d,p){const a=document.createElement('a');a.href=p.url;a.textContent='📖 '+p.title+' ↗';if(new URL(p.url).origin!==location.origin){a.target='_blank';a.rel='noopener noreferrer'}d.append(a)}
-function rank(query,p){const qs=words(query);const title=norm(p.title),desc=norm(p.desc),section=norm(p.section);let score=0;for(const w of qs){if(title.includes(w))score+=8;if(desc.includes(w))score+=3;if(section.includes(w))score+=2}return score}
+addPage('Agent d’audit et de thérapie — ARIANE / IA sur le Bien',
+ 'https://kapdehendel.github.io/IA-sur-le-Bien/',
+ 'Outils et agents du site',
+ 'Assistant, agent interactif d’audit et de thérapie lié à La Religion du Bien.',
+ 'agent chatbot bot intelligence artificielle ariane thérapie audit assistant outil discuter conversation');
+addPage('Observatoire IFH-TEC — Prédictions, vérifications et visualisations',
+ 'observatoire-ifh-tec.html','Laboratoire IFH-TEC',
+ 'Cycle 1, Cycle 2, graphiques, hypothèses et méthode.',
+ 'prédictions observatoire graphique laboratoire');
+const specialAnswers=[
+ {test:q=>/\\b(agent|assistant|chatbot|chat bot|bot|therap|audit|discut|conversation)\\b/.test(q),
+  intro:'Oui. La Religion du Bien propose un agent d’audit et de thérapie accessible en ligne. Voici son lien :',
+  match:p=>p.url.includes('/IA-sur-le-Bien/')},
+ {test:q=>/\\b(observatoire|prediction|ifh|cycle 1|cycle 2|graphique)\\b/.test(q),
+  intro:'Le site propose un Observatoire IFH-TEC consacré aux cycles de recherche, aux prédictions et aux visualisations :',
+  match:p=>p.url.includes('observatoire-ifh-tec.html')}
+];
+function rank(query,p){const qs=words(query);const title=norm(p.title),desc=norm(p.desc),section=norm(p.section),tags=norm(p.tags||'');let score=0;for(const w of qs){if(title.includes(w))score+=8;if(desc.includes(w))score+=3;if(section.includes(w))score+=2;if(tags.includes(w))score+=5}return score}
 async function excerpt(p,query){
 if(new URL(p.url).origin!==location.origin)return '';
 try{
@@ -202,24 +227,36 @@ return chosen?chosen.slice(0,270):'';
 }catch(e){return ''}
 }
 async function answer(question){
-msg(question,'user');
-const ranked=pages.map(p=>({...p,score:rank(question,p)})).sort((a,b)=>b.score-a.score);
-const matches=ranked.filter(p=>p.score>0).slice(0,5);
-if(!matches.length){const d=msg('Je n’ai pas trouvé de titre correspondant dans la bibliothèque. Essaie des mots-clés comme « souffrance », « conscience », « pivot », « IFH-TEC » ou « thérapie ».');return}
-const d=msg('Je recherche les textes correspondants…');
-const excerptText=await excerpt(matches[0],question);
-d.textContent='Voici les lectures les plus pertinentes que j’ai trouvées dans la bibliothèque :';
-if(excerptText){const p=document.createElement('p');p.textContent='Extrait du premier texte : « '+excerptText+' »';d.append(p)}
-matches.forEach(p=>link(d,p));
-const small=document.createElement('p');small.textContent='Ces résultats reposent sur les titres et des extraits disponibles, et ne constituent pas une réponse d’IA générative.';small.style.fontSize='11px';d.append(small);
-messages.scrollTop=messages.scrollHeight;
+ msg(question,'user');
+ const q=norm(question);
+ const special=specialAnswers.find(x=>x.test(q));
+ if(special){
+  const d=msg(special.intro);
+  pages.filter(special.match).forEach(p=>link(d,p));
+  return;
+ }
+ const ranked=pages.map(p=>({...p,score:rank(question,p)})).sort((a,b)=>b.score-a.score);
+ const matches=ranked.filter(p=>p.score>0).slice(0,7);
+ if(!matches.length){
+  const d=msg('Je ne trouve pas de ressource correspondant à cette question. Essaie « agent », « souffrance », « conscience », « IFH-TEC » ou « thérapie ».');
+  const agent=pages.find(p=>p.url.includes('/IA-sur-le-Bien/'));if(agent)link(d,agent);
+  return;
+ }
+ const d=msg('Voici les ressources correspondantes :');
+ const excerptText=await excerpt(matches[0],question);
+ if(excerptText){const p=document.createElement('p');p.textContent='Extrait : « '+excerptText+' »';d.append(p)}
+ matches.forEach(p=>link(d,p));
+ const small=document.createElement('p');
+ small.textContent='Guide documentaire gratuit : recherche dans les liens du site et extraits accessibles, sans IA générative.';
+ small.style.fontSize='11px';d.append(small);
+ messages.scrollTop=messages.scrollHeight;
 }
 function toggle(open){panel.classList.toggle('open',open);launch.setAttribute('aria-expanded',String(open));if(open)input.focus()}
 launch.addEventListener('click',()=>toggle(!panel.classList.contains('open')));
 close.addEventListener('click',()=>toggle(false));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))toggle(false)});
 form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;input.value='';answer(q)});
-msg('Bonjour ! Je suis le guide documentaire ARIANE. Pose-moi une question sur le Bien, la souffrance, IFH-TEC, la conscience artificielle ou les récits. Je te proposerai les pages à lire.');
+msg('Bonjour ! Je suis le guide documentaire ARIANE. Pose-moi une question sur le Bien, la souffrance, IFH-TEC, la conscience artificielle ou les récits. Je te proposerai les pages, documents et outils à consulter.');
 })();
 </script>
 </body></html>
