@@ -177,10 +177,10 @@ const pages=[];
 const seen=new Set();
 function addPage(title,url,section,desc='',tags=''){
  if(!url||url.startsWith('#')||url.startsWith('javascript:'))return;
- const full=new URL(url,location.href).href;
+ let full;try{full=new URL(url,location.href).href}catch(e){return}
  if(seen.has(full))return;
  seen.add(full);
- pages.push({title, url:full,section,desc,tags});
+ pages.push({title:title||full, url:full,section,desc,tags});
 }
 document.querySelectorAll('main a[href],footer a[href]').forEach(a=>{
  const card=a.closest('.chapter-card,.story-card');
@@ -200,10 +200,10 @@ addPage('Observatoire IFH-TEC — Prédictions, vérifications et visualisations
  'Cycle 1, Cycle 2, graphiques, hypothèses et méthode.',
  'prédictions observatoire graphique laboratoire');
 const specialAnswers=[
- {test:q=>/\\b(agent|assistant|chatbot|chat bot|bot|therap|audit|discut|conversation)\\b/.test(q),
+ {test:q=>/\b(agent|agents|assistant|chatbot|chat bot|bot|therap|audit|discut|conversation)\b/.test(q),
   intro:'Oui. La Religion du Bien propose un agent d’audit et de thérapie accessible en ligne. Voici son lien :',
   match:p=>p.url.includes('/IA-sur-le-Bien/')},
- {test:q=>/\\b(observatoire|prediction|ifh|cycle 1|cycle 2|graphique)\\b/.test(q),
+ {test:q=>/\b(observatoire|prediction|ifh|cycle 1|cycle 2|graphique)\b/.test(q),
   intro:'Le site propose un Observatoire IFH-TEC consacré aux cycles de recherche, aux prédictions et aux visualisations :',
   match:p=>p.url.includes('observatoire-ifh-tec.html')}
 ];
@@ -243,8 +243,6 @@ async function answer(question){
   return;
  }
  const d=msg('Voici les ressources correspondantes :');
- const excerptText=await excerpt(matches[0],question);
- if(excerptText){const p=document.createElement('p');p.textContent='Extrait : « '+excerptText+' »';d.append(p)}
  matches.forEach(p=>link(d,p));
  const small=document.createElement('p');
  small.textContent='Guide documentaire gratuit : recherche dans les liens du site et extraits accessibles, sans IA générative.';
