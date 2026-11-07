@@ -1,0 +1,1 @@
+Sept sections extraites du PDF « religion du bien.pdf » sans réécriture. Chaque fichier HTML est autonome. Le fichier index.html est un sommaire provisoire, distinct du index.html du site existant : ne pas écraser celui du dépôt. Vérifier la mise en forme et les coupures issues du PDF avant publication.
