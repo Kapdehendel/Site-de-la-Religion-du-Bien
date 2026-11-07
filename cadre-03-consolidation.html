@@ -1,0 +1,552 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IFH-TEC — V(t) : spécification consolidée — Cadre</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#101c2a;color:#e8eaf0;font:17px/1.85 system-ui,-apple-system,'Segoe UI',sans-serif}a{color:#f1d393}a:hover{color:#fff}header{background:#0c1520;border-bottom:1px solid #b8945150;padding:15px 5%;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}header a,.page-nav a{text-decoration:none;border:1px solid #b8945170;border-radius:9px;padding:8px 13px;background:#192c3f}header strong{color:#f3d795}.hero{padding:62px 22px 45px;text-align:center;background:radial-gradient(ellipse at top,#28445c,#101c2a 72%)}.hero .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#d9b56e}h1{font:clamp(30px,5vw,54px)/1.2 Georgia,serif;color:#f4dca7;max-width:900px;margin:14px auto}.hero p{color:#b8c7d6}main{max-width:950px;margin:auto;padding:30px 22px 75px}.source{white-space:pre-wrap;overflow-wrap:anywhere;font:17px/1.82 system-ui,-apple-system,'Segoe UI',sans-serif;background:#17283a;border:1px solid #b8945140;border-radius:16px;padding:clamp(20px,5vw,52px)}.page-nav{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:24px 0}.page-nav a{display:inline-block}footer{text-align:center;color:#b8c7d6;padding:25px;border-top:1px solid #b8945140}@media(max-width:600px){.source{font-size:16px;line-height:1.7}}</style></head><body><header><strong>✦ La Religion du Bien</strong><a href="index.html">⌂ Retour au site</a></header><section class="hero"><div class="kicker">Cadre · Partie 03 / 04</div><h1>IFH-TEC — V(t) : spécification consolidée</h1><p>Texte intégral issu du document original « Cadre »</p></section><main><nav class="page-nav" aria-label="Navigation"><a href="cadre-02-vulnerabilite.html">← Partie précédente</a><a href="index.html">⌂ Retour au site</a><a href="cadre-04-etude-afrique-est.html">Partie suivante →</a></nav><article class="source">III. IFH-TEC — V(t) : clarification et spécification opérationnelle consolidée
+IFH-TEC — V(t) : clarification et spécification opérationnelle consolidée
+Statut : proposition de consolidation méthodologique pour le Cycle 2
+Protocole : ARI v1.2
+Laboratoire : ARIANE / IFH-TEC
+Cycle 1 : archive historique inchangée
+───
+1. Objet de la mesure
+V(t) vise à évaluer la vulnérabilité d&#x27;un système face à un scénario de 
+perturbation défini et sur un horizon temporel déterminé.
+Il ne constitue ni une probabilité d&#x27;effondrement, ni une mesure directe des 
+dommages, ni une mesure générale du risque.
+La notation retenue est :
+[ V(t_0\mid s,h) ]
+où :
+• (t_0) désigne la date de référence de l&#x27;évaluation ;
+• (s) désigne le scénario de perturbation étudié ;
+• (h) désigne l&#x27;horizon temporel considéré.
+La vulnérabilité est ainsi évaluée en fonction du système, de son état à la date 
+de référence, du scénario étudié et de l&#x27;horizon retenu.
+La date de référence doit être distinguée de la période pendant laquelle la 
+perturbation se produit et de la période nécessaire à la récupération du 
+système.
+V(t) caractérise une vulnérabilité conditionnelle à un scénario et à un horizon 
+donnés. Deux évaluations portant sur des scénarios ou des horizons différents ne 
+sont donc pas directement comparables sans précautions méthodologiques.
+2. Définition des composantes
+D_dep(t₀) — Dépendance critique
+Degré auquel les fonctions essentielles dépendent d&#x27;une ressource, d&#x27;un acteur 
+ou d&#x27;un composant particulier.
+La mesure porte sur la criticité de cette dépendance et sur les conséquences 
+fonctionnelles de son indisponibilité.
+Elle doit notamment tenir compte :
+• de l&#x27;importance de la ressource ou de l&#x27;acteur concerné ;
+• de la possibilité de substitution ;
+• du délai nécessaire au remplacement ;
+• des conséquences fonctionnelles de son indisponibilité ;
+• des dépendances communes entre plusieurs ressources apparemment distinctes.
+E(t₀|s) — Exposition
+Degré d&#x27;exposition des capacités essentielles du système au scénario de 
+perturbation défini.
+La mesure porte sur la proportion des fonctions et capacités susceptibles d&#x27;être 
+atteintes.
+L&#x27;intensité, la fréquence, la durée et l&#x27;étendue de la perturbation sont 
+décrites séparément afin de ne pas les compter une seconde fois dans la mesure 
+de l&#x27;exposition.
+
+L&#x27;exposition doit être évaluée par rapport à un périmètre fonctionnel explicite 
+et à des capacités de référence identifiées.
+K(t₀) — Concentration structurelle
+Degré de concentration des fonctions critiques et insuffisance de solutions 
+structurelles indépendantes.
+La mesure porte sur l&#x27;architecture existant avant la perturbation, notamment :
+• la concentration des capacités ;
+• les points de défaillance uniques ;
+• le déficit de redondance ;
+• la diversité réelle des ressources et des itinéraires ;
+• les dépendances communes entre les solutions alternatives.
+Deux solutions partageant une même dépendance critique ne sont pas considérées 
+comme pleinement indépendantes.
+La présence théorique de plusieurs solutions ne suffit donc pas à établir 
+l&#x27;existence d&#x27;une redondance structurelle effective.
+A_eff(t₀|s,h) — Efficacité adaptative
+Capacité réellement mobilisable pour répondre à la perturbation dans le délai 
+défini et maintenir les fonctions essentielles pendant l&#x27;horizon considéré.
+Elle prend en compte :
+• la mobilisation effective des solutions ;
+• leur efficacité opérationnelle ;
+• les délais d&#x27;activation ;
+• les ressources nécessaires ;
+• les contraintes d&#x27;utilisation ;
+• les capacités réellement disponibles ;
+• la qualité du service maintenu ;
+• la soutenabilité de la réponse pendant l&#x27;horizon considéré.
+Elle mesure la capacité effectivement maintenue grâce à l&#x27;adaptation et non la 
+simple existence théorique d&#x27;une solution alternative.
+Une capacité annoncée ou nominale ne peut être assimilée automatiquement à une 
+capacité opérationnelle.
+Par exemple, un lit hospitalier ne constitue une capacité de soins réellement 
+mobilisable que si les personnels, les équipements, les fournitures et les 
+conditions opérationnelles nécessaires sont disponibles.
+De même, une infrastructure de substitution ne constitue une adaptation 
+effective que si elle peut absorber une capacité supplémentaire dans des délais 
+et à des conditions compatibles avec le maintien des fonctions essentielles.
+L&#x27;efficacité adaptative doit être appréciée au regard des seuils minimaux de 
+fonctionnement définis pour les fonctions essentielles.
+Il convient de distinguer trois niveaux de connaissance :
+1. Adaptation théorique : une solution alternative existe ou est annoncée.
+2. Adaptation observée : des changements opérationnels démontrent que cette 
+solution a effectivement été mobilisée.
+3. Adaptation quantifiée : les données permettent de mesurer la proportion de 
+capacité effectivement maintenue grâce à cette adaptation.
+Une adaptation observée constitue une information empirique exploitable, même 
+lorsque son efficacité exacte n&#x27;est pas encore quantifiable.
+3. Règle de séparation des variables
+La distinction entre K(t₀) et A_eff(t₀|s,h) constitue une règle fondamentale du 
+modèle.
+K mesure la structure préexistante du système.
+A_eff mesure la mobilisation et l&#x27;efficacité de la réponse adaptative.
+L&#x27;existence d&#x27;une solution alternative est comptabilisée dans l&#x27;analyse 
+structurelle. Son activation, ses délais, ses performances opérationnelles et sa 
+soutenabilité sont évalués dans l&#x27;analyse adaptative.
+Chaque donnée brute est affectée à une seule composante du calcul. Tout 
+chevauchement doit être documenté et justifié.
+Une capacité alternative ne peut donc pas être comptabilisée simultanément comme 
+une redondance structurelle supplémentaire et comme une capacité adaptative 
+disponible, sans distinction entre ces deux propriétés.
+Les dépendances communes entre solutions doivent également être recherchées. 
+Plusieurs solutions partageant un même acteur, une même infrastructure ou une 
+même ressource critique ne constituent pas nécessairement des alternatives 
+indépendantes.
+
+Les corrélations statistiques entre composantes doivent être distinguées des 
+doubles comptages réels : une corrélation n&#x27;établit pas à elle seule une 
+duplication de données, mais constitue un signal nécessitant un examen.
+4. Formule candidate conservée
+La vulnérabilité structurelle et fonctionnelle de référence est calculée ainsi :
+[ V_s(t_0\mid s)= \frac{D_{\mathrm{dep}}(t_0)+E(t_0\mid s)+K(t_0)}{3} ]
+La vulnérabilité après prise en compte de l&#x27;adaptation est calculée ainsi :
+[ \boxed{ V(t_0\mid s,h)= V_s(t_0\mid s) \left[1-A_{\mathrm{eff}}(t_0\mid s,h)
+\right] } ]
+Les quatre composantes sont normalisées entre 0 et 1.
+La pondération égale et la réduction multiplicative par l&#x27;adaptation demeurent 
+des hypothèses méthodologiques à tester. Elles ne constituent pas des lois 
+démontrées.
+Le choix de la moyenne arithmétique suppose une certaine compensation entre les 
+dimensions. Sa robustesse devra donc être examinée par comparaison avec d&#x27;autres 
+pondérations et méthodes d&#x27;agrégation.
+Une attention particulière doit être portée aux situations dans lesquelles une 
+faiblesse extrême sur une fonction essentielle pourrait être masquée par des 
+valeurs plus favorables sur les autres fonctions.
+Le modèle doit donc conserver les valeurs individuelles des composantes et 
+documenter les éventuelles défaillances critiques.
+Une règle complémentaire de seuil critique pourra être étudiée pour déterminer 
+si certaines fonctions essentielles nécessitent un traitement non compensatoire.
+Le score global doit toujours être accompagné des valeurs individuelles des 
+composantes.
+4.1. Règle de calcul en présence de données incomplètes
+L&#x27;insuffisance de données ne doit plus entraîner automatiquement 
+l&#x27;indisponibilité du score global.
+Trois statuts de calcul sont désormais distingués.
+A. Score calculé
+Toutes les composantes disposent de mesures suffisamment documentées, avec des 
+périmètres et des dénominateurs cohérents.
+Le score peut être présenté comme une estimation quantitative construite à 
+partir des données disponibles, sous réserve de ses incertitudes.
+B. Score provisoire
+Une ou plusieurs composantes ne disposent pas encore de mesures directes 
+complètes, mais des observations empiriques, des indicateurs indirects ou des 
+proxys documentés permettent de construire une estimation provisoire.
+Dans ce cas :
+• les valeurs disponibles sont utilisées ;
+• les proxys sont explicitement identifiés ;
+• les estimations provisoires sont distinguées des mesures directes ;
+• les données manquantes sont indiquées ;
+• le score est calculé et publié ;
+• son statut provisoire est conservé jusqu&#x27;à amélioration des données.
+Le score provisoire n&#x27;est pas une validation empirique définitive. Il constitue 
+néanmoins un résultat de travail quantifié, qui peut être comparé ultérieurement 
+à une estimation enrichie.
+C. Score non calculable
+Ce statut est réservé aux situations dans lesquelles les données disponibles ne 
+permettent même pas de construire une estimation raisonnablement bornée des 
+composantes.
+Il ne doit pas être utilisé simplement parce qu&#x27;une donnée idéale ou 
+parfaitement exhaustive n&#x27;est pas disponible.
+4.2. Gestion des estimations provisoires
+Une valeur provisoire doit être accompagnée de sa justification.
+Il convient notamment de préciser :
+• la donnée empirique utilisée ;
+• la transformation appliquée ;
+• le caractère direct ou indirect de la mesure ;
+• les limites du proxy ;
+• la confiance accordée à l&#x27;estimation ;
+• les informations qui permettraient de la remplacer par une mesure plus 
+précise.
+
+Lorsqu&#x27;une composante ne peut être mesurée directement, une estimation de 
+travail peut être proposée à partir des éléments disponibles, mais elle ne doit 
+jamais être présentée comme une observation directe.
+Si plusieurs valeurs sont plausibles, une fourchette de sensibilité doit être 
+calculée.
+Une valeur centrale provisoire peut être publiée, accompagnée de cette 
+fourchette et d&#x27;une indication explicite de son incertitude.
+4.3. Principe de révision du score
+Un score provisoire reste valable comme état de référence du calcul à la date 
+considérée, jusqu&#x27;à ce que de nouvelles données justifient sa révision.
+L&#x27;arrivée de nouvelles données ne doit pas conduire à effacer l&#x27;ancien score.
+Les deux résultats doivent être conservés :
+• score provisoire initial ;
+• score recalculé avec les données enrichies.
+Cette conservation permet de mesurer l&#x27;effet réel de l&#x27;amélioration des 
+informations sur l&#x27;estimation de la vulnérabilité.
+5. Méthode de construction des indicateurs
+Chaque composante est calculée à partir d&#x27;indicateurs observables et documentés.
+Pour un ensemble de fonctions essentielles indexées par i, on définit un poids 
+de criticité w_i, fixé avant l&#x27;analyse.
+Les composantes peuvent alors être construites selon la forme générale :
+[ D_{\mathrm{dep}}= \frac{\sum_i w_i d_i}{\sum_i w_i} ]
+[ E= \frac{\sum_i w_i e_i}{\sum_i w_i} ]
+[ K= \frac{\sum_i w_i k_i}{\sum_i w_i} ]
+[ A_{\mathrm{eff}}= \frac{\sum_i w_i a_i}{\sum_i w_i} ]
+Avec :
+• d_i : niveau de dépendance critique de la fonction ;
+• e_i : proportion de sa capacité exposée au scénario ;
+• k_i : déficit de redondance structurelle indépendante ;
+• a_i : proportion de capacité effectivement maintenue grâce à l&#x27;adaptation.
+Les règles de conversion des données brutes en valeurs comprises entre 0 et 1 
+doivent être définies avant les calculs.
+Les dénominateurs, les périmètres fonctionnels et les pondérations doivent 
+rester cohérents entre les différentes composantes.
+Les pondérations ne doivent pas être choisies après observation des résultats 
+dans le but d&#x27;obtenir un score particulier.
+5.1. Définition des capacités de référence
+Pour chaque fonction essentielle, il convient de définir :
+• la capacité de référence ;
+• le niveau minimal de fonctionnement acceptable ;
+• les ressources nécessaires au maintien de cette fonction ;
+• les délais maximaux acceptables d&#x27;interruption ;
+• les exigences de qualité et de sécurité.
+Cette définition permet de distinguer la capacité nominale, la capacité 
+effectivement disponible et la capacité fonctionnelle réellement maintenue.
+5.2. Mesure de l&#x27;efficacité adaptative
+La valeur a_i doit représenter la proportion de la fonction effectivement 
+maintenue grâce aux capacités adaptatives.
+Elle ne doit pas être calculée à partir de la seule existence d&#x27;une solution 
+alternative.
+Son évaluation doit intégrer la capacité réellement mobilisable, les délais 
+d&#x27;activation, les contraintes de ressources, les performances obtenues et la 
+soutenabilité de la réponse.
+Une adaptation temporairement efficace ne doit pas être considérée 
+automatiquement comme soutenable sur un horizon plus long.
+Les règles de mesure doivent être fixées avant l&#x27;observation des résultats.
+5.3. Mesure indirecte et proxys empiriques
+Lorsque la mesure directe de a_i n&#x27;est pas disponible, des indicateurs indirects 
+peuvent être utilisés.
+Ils peuvent notamment porter sur :
+• la proportion du trafic ou du service maintenue ;
+• la proportion des flux effectivement reroutés ;
+• l&#x27;évolution des capacités disponibles sur les itinéraires alternatifs ;
+• les délais de rétablissement ;
+
+• les niveaux de congestion ;
+• les pertes de service résiduelles ;
+• la continuité des fonctions essentielles pendant la perturbation.
+Ces indicateurs ne sont pas automatiquement équivalents à A_eff.
+Il faut établir le lien entre le proxy et la capacité maintenue grâce à 
+l&#x27;adaptation.
+Par exemple, un trafic qui continue de circuler ne prouve pas nécessairement que 
+son maintien résulte d&#x27;un reroutage : il peut aussi correspondre à un trafic qui 
+n&#x27;a jamais été affecté.
+La comparaison avant, pendant et après la perturbation, ainsi que 
+l&#x27;identification des routes alternatives effectivement utilisées, sont donc 
+essentielles.
+Lorsqu&#x27;une mesure directe est impossible, le proxy retenu peut néanmoins servir 
+à construire un score provisoire, sous réserve d&#x27;indiquer explicitement ce qu&#x27;il 
+mesure réellement.
+6. Chaîne d&#x27;analyse
+L&#x27;analyse IFH-TEC distingue six étapes :
+1. Perturbation : nature, intensité, fréquence, durée et étendue du phénomène.
+2. Exposition : part des capacités du système concernées par le scénario.
+3. Vulnérabilité : dépendance, exposition et concentration structurelle.
+4. Réponse adaptative : capacités effectivement mobilisées et efficacité de leur 
+fonctionnement.
+5. Conséquences : dommages humains, matériels, économiques, sociaux et 
+environnementaux.
+6. Récupération : retour éventuel à un fonctionnement acceptable et délais 
+nécessaires.
+Les conséquences et la récupération sont des résultats observables permettant 
+d&#x27;évaluer le modèle.
+Elles ne sont pas ajoutées rétroactivement aux composantes de V(t).
+Cette séparation évite de confondre la vulnérabilité préalable, les réponses 
+effectivement apportées et les dommages finalement constatés.
+La fin d&#x27;une perturbation ne correspond pas nécessairement au rétablissement du 
+fonctionnement normal.
+Il convient donc de distinguer :
+• la fin de la perturbation initiale ;
+• le rétablissement des infrastructures ;
+• le rétablissement des capacités fonctionnelles ;
+• le retour des flux et services à un niveau acceptable ;
+• la récupération durable du système.
+Ces différentes temporalités doivent être documentées séparément.
+7. Conditions de calcul
+Tout calcul de V(t) doit préciser :
+• le système étudié ;
+• les fonctions essentielles retenues ;
+• le scénario de perturbation ;
+• la date de référence ;
+• la période de perturbation considérée ;
+• l&#x27;horizon temporel ;
+• les capacités de référence ;
+• les seuils minimaux de fonctionnement ;
+• les indicateurs bruts utilisés ;
+• les dénominateurs retenus ;
+• les règles de normalisation ;
+• les pondérations ;
+• les sources et la qualité des données ;
+• les incertitudes ;
+• les éventuelles données manquantes ;
+• le statut de chaque composante : mesurée, estimée ou approchée par un proxy.
+Les corrélations entre composantes doivent être examinées afin de détecter les 
+doubles comptages et les dépendances statistiques excessives.
+Les pondérations, la méthode d&#x27;agrégation et la sensibilité des résultats aux 
+hypothèses doivent faire l&#x27;objet de comparaisons documentées.
+Les solutions alternatives doivent être examinées en tenant compte de leurs 
+dépendances communes et de leur capacité supplémentaire réellement disponible.
+
+Les comparaisons entre plusieurs évaluations doivent respecter autant que 
+possible des périmètres fonctionnels, des scénarios, des horizons et des règles 
+de mesure homogènes.
+Si ces conditions ne sont pas réunies, les différences de scores ne doivent pas 
+être interprétées directement comme des évolutions réelles de vulnérabilité.
+Toutefois, l&#x27;absence de données parfaites ne doit pas empêcher la production 
+d&#x27;un score provisoire lorsque des informations empiriques exploitables existent.
+8. Protocole de validation
+La validation devra comparer V(t) à un ou plusieurs modèles de référence plus 
+simples, sur des cas indépendants.
+Deux propriétés seront testées séparément.
+A. Qualité diagnostique
+Capacité à caractériser correctement la vulnérabilité d&#x27;un système à partir des 
+informations disponibles à la date d&#x27;évaluation.
+Cette évaluation devra examiner la cohérence entre les caractéristiques 
+structurelles et fonctionnelles du système et le diagnostic produit.
+B. Qualité prédictive
+Capacité à améliorer l&#x27;anticipation des conséquences futures par rapport aux 
+modèles de référence.
+Les tests devront respecter une séparation temporelle entre les données 
+utilisées pour établir les estimations et les observations utilisées pour 
+évaluer les résultats.
+Les résultats négatifs et les contre-exemples seront conservés.
+Aucun succès isolé ne suffira à établir une validité générale.
+La validation devra également examiner :
+• la stabilité des résultats lorsque les pondérations sont modifiées ;
+• la sensibilité aux règles de normalisation ;
+• la comparaison entre différentes méthodes d&#x27;agrégation ;
+• les effets des données manquantes ;
+• les éventuels doubles comptages ;
+• la reproductibilité des résultats entre analystes ;
+• la capacité du modèle à traiter les défaillances critiques ;
+• sa performance sur plusieurs domaines d&#x27;application.
+La comparaison avec des modèles de référence devra notamment déterminer si la 
+complexité supplémentaire de V(t) apporte une amélioration mesurable.
+Un modèle plus complexe ne doit pas être considéré comme supérieur simplement 
+parce qu&#x27;il intègre davantage de variables.
+8.1. Validation progressive
+La validation peut progresser par niveaux :
+• Niveau 1 : cohérence des définitions et calcul reproductible ;
+• Niveau 2 : confrontation avec des observations empiriques ;
+• Niveau 3 : mesure suffisamment documentée des quatre composantes ;
+• Niveau 4 : comparaison diagnostique avec des modèles de référence ;
+• Niveau 5 : tests prédictifs sur des cas indépendants.
+L&#x27;absence d&#x27;accès à certaines données opérationnelles peut empêcher de franchir 
+un niveau sans invalider les résultats déjà établis aux niveaux précédents.
+Une validation partielle doit donc être identifiée comme telle, plutôt que 
+confondue avec une absence totale de résultat.
+9. Applications exploratoires
+9.1. Cas d&#x27;Ormuz
+La confrontation initiale avec les données du cas Ormuz a permis de calculer 
+plusieurs indicateurs intermédiaires :
+• la capacité théorique de contournement pétrolier ;
+• l&#x27;évolution du trafic maritime observable ;
+• la compensation partielle des pertes de GNL par la production extérieure au 
+Golfe.
+Ces observations montrent l&#x27;intérêt de distinguer les dépendances, les capacités 
+de substitution et les adaptations effectivement mobilisées.
+Elles ne suffisent cependant pas encore à produire un score global V(t) 
+reproductible.
+Les mesures harmonisées de toutes les composantes, sur un périmètre fonctionnel 
+et un horizon temporel communs, restent nécessaires.
+Cette application constitue une première confrontation empirique de la méthode, 
+et non sa validation définitive.
+
+9.2. Test comparatif sur le blocage du canal de Suez
+Le blocage du canal de Suez par le porte-conteneurs Ever Given en mars 2021 a 
+constitué un premier terrain d&#x27;application exploratoire.
+Ce cas a permis d&#x27;examiner :
+• la dépendance des flux commerciaux au passage stratégique ;
+• l&#x27;exposition des flux à une interruption totale ;
+• la concentration des itinéraires maritimes ;
+• l&#x27;existence de solutions de contournement ;
+• les délais et contraintes associés à leur utilisation ;
+• la différence entre rétablissement du passage et récupération des flux 
+logistiques.
+Des observations documentées ont notamment montré que le contournement par le 
+cap de Bonne-Espérance était possible, mais impliquait des délais et des coûts 
+supplémentaires.
+Le cas a également mis en évidence que la fin du blocage ne correspondait pas 
+immédiatement au retour à un fonctionnement logistique normal.
+Ce premier examen a révélé plusieurs exigences complémentaires :
+• définir les dénominateurs permettant de mesurer les capacités exposées ;
+• distinguer les alternatives théoriques des capacités réellement mobilisables ;
+• mesurer les performances fonctionnelles des solutions de substitution ;
+• distinguer la fin de la perturbation de la récupération ;
+• comparer les résultats à des indicateurs de référence plus simples.
+Les données disponibles ne permettaient pas de construire quatre composantes 
+suffisamment harmonisées et documentées.
+Aucun score global V(t) reproductible n&#x27;a donc été calculé pour ce cas.
+Ce résultat ne constitue pas une validation quantitative. Il constitue un 
+enseignement méthodologique issu d&#x27;une application exploratoire.
+9.3. Extension à d&#x27;autres domaines
+La transposabilité conceptuelle de V(t) a également été examinée sur des 
+systèmes énergétiques et sanitaires.
+Ces examens ont montré que les quatre dimensions peuvent être formulées dans des 
+domaines différents.
+Ils ont notamment mis en évidence l&#x27;importance de distinguer les capacités 
+nominales des capacités effectivement opérationnelles, ainsi que les dépendances 
+communes entre ressources et solutions alternatives.
+Ces observations ne constituent pas une validation intersectorielle de la 
+formule.
+Des indicateurs comparables, des calculs reproductibles et des évaluations 
+indépendantes restent nécessaires.
+9.4. Cas des câbles sous-marins de la mer Rouge — février 2024
+Ce cas constitue une application exploratoire supplémentaire consacrée à la 
+dépendance des communications internationales aux câbles sous-marins et à la 
+réponse adaptative consécutive aux dommages de février 2024.
+Les observations disponibles documentent notamment :
+• l&#x27;interruption ou la dégradation de plusieurs systèmes de câbles ;
+• les modifications de routage observées par des opérateurs et des observateurs 
+du réseau ;
+• le recours à des itinéraires de transit alternatifs ;
+• l&#x27;augmentation de l&#x27;utilisation de certains opérateurs de transit ;
+• les annonces de reroutage vers l&#x27;Europe par la Chine continentale, les États-
+Unis et d&#x27;autres systèmes de câbles ;
+• le maintien du trafic dans certains territoires surveillés par Cloudflare ;
+• la persistance de perturbations et de congestions signalées par certains 
+opérateurs.
+Les observations de Kentik relatives aux changements de transit constituent une 
+preuve empirique de la mobilisation de solutions adaptatives. Les annonces d&#x27;HGC 
+documentent les itinéraires alternatifs envisagés ou mobilisés. Les observations 
+de Cloudflare et les diagnostics de RETN apportent des informations 
+complémentaires sur les conséquences pour le trafic.
+Il faut toutefois distinguer les périmètres de ces sources : elles ne mesurent 
+pas toutes le même trafic, les mêmes territoires ni les mêmes services.
+9.4.1. Résultat relatif à l&#x27;adaptation
+L&#x27;adaptation ne relève pas ici d&#x27;une simple possibilité théorique.
+Les changements de transit et de routage observés démontrent que des solutions 
+
+alternatives ont effectivement été mobilisées.
+La variable A_eff dispose donc d&#x27;un appui empirique concernant l&#x27;existence et la 
+mise en œuvre de l&#x27;adaptation.
+En revanche, les données publiques retrouvées ne fournissent pas encore les 
+volumes homogènes nécessaires pour calculer exactement la proportion de capacité 
+maintenue grâce à ces adaptations.
+Il manque notamment :
+• les volumes de trafic avant et pendant l&#x27;incident pour un même réseau ;
+• les volumes effectivement transférés sur les itinéraires alternatifs ;
+• les capacités disponibles et utilisées sur ces itinéraires ;
+• la part du trafic qui aurait été perdue en l&#x27;absence de reroutage ;
+• la durée pendant laquelle les solutions alternatives ont maintenu le service.
+L&#x27;absence de ces informations empêche une mesure directe et complète de A_eff, 
+mais n&#x27;annule pas les observations empiriques déjà obtenues.
+9.4.2. Score provisoire de travail
+Un premier score de travail a été établi à partir des estimations initialement 
+utilisées pour cette application :
+[ D_{\mathrm{dep}}=0,80 ]
+[ E=0,25 ]
+[ K=0,90 ]
+La vulnérabilité structurelle estimée est donc :
+[ V_s=\frac{0,80+0,25+0,90}{3} ]
+[ V_s=0,65 ]
+Une première valeur conventionnelle de continuité observée a été obtenue à 
+partir de la part de trafic déclarée comme affectée par HGC :
+[ A_{\mathrm{cont}}^{*}=1-0,25=0,75 ]
+Cette valeur représente un proxy de continuité du trafic non déclaré affecté. 
+Elle ne constitue pas une mesure directe de la capacité maintenue grâce au 
+reroutage.
+En utilisant provisoirement ce proxy dans la formule, le score de travail est :
+[ V^{*}=0,65\times(1-0,75) ]
+[ \boxed{V^{*}=0,1625} ]
+Soit :
+[ \boxed{V^{*}=16,25/100} ]
+Statut du résultat : score provisoire de travail, non validé quantitativement.
+Ce score est conservé comme point de référence de l&#x27;application exploratoire. Il 
+ne doit pas être présenté comme une mesure définitive de la vulnérabilité 
+réelle.
+Deux réserves doivent être conservées :
+1. Le proxy de continuité de 0,75 ne mesure pas directement la contribution 
+causale du reroutage.
+2. Les estimations de dépendance, d&#x27;exposition et de concentration utilisées 
+dans ce calcul doivent encore être harmonisées et vérifiées sur un même 
+périmètre fonctionnel.
+Le score de 16,25/100 constitue donc un résultat provisoire calculé, et non une 
+valeur empiriquement validée.
+Il ne doit pas être effacé au motif que les données sont incomplètes. Il doit 
+être conservé, documenté et recalculé lorsque de nouvelles données permettront 
+de mieux mesurer les composantes.
+9.4.3. Données nécessaires à la révision
+La révision de ce score devra prioritairement rechercher :
+• les séries de trafic avant, pendant et après les coupures ;
+• les volumes transférés sur les itinéraires alternatifs ;
+• les capacités supplémentaires réellement disponibles ;
+• les taux de congestion sur les routes de substitution ;
+• les délais de mobilisation et de rétablissement ;
+• les différences de performance entre les réseaux et territoires concernés.
+Les données obtenues devront être rapportées au même périmètre fonctionnel avant 
+de recalculer les composantes.
+Conclusion de l&#x27;application : l&#x27;existence d&#x27;une adaptation effective est 
+empiriquement documentée. L&#x27;efficacité quantitative de cette adaptation reste à 
+préciser. Un score provisoire de 16,25/100 est conservé comme référence 
+exploratoire, dans l&#x27;attente d&#x27;une mesure plus complète.
+10. Décision de versionnement
+
+Cette spécification constitue une proposition de consolidation méthodologique 
+pour le Cycle 2, dans le cadre d&#x27;ARI v1.2.
+Elle ne modifie pas rétroactivement le Cycle 1, ses 140 prédictions ou son bilan 
+prédictif.
+La formule conserve son statut expérimental jusqu&#x27;à validation empirique 
+indépendante.
+Toute évolution ultérieure devra être documentée, justifiée et versionnée.
+Les modifications apportées à cette spécification renforcent :
+• les exigences de construction des indicateurs ;
+• la séparation des composantes ;
+• la mesure de l&#x27;adaptation ;
+• l&#x27;évaluation de la récupération ;
+• la gestion des données manquantes ;
+• la possibilité de produire un score provisoire ;
+• la conservation des scores successifs lors de l&#x27;amélioration des données.
+Elles ne constituent pas une validation définitive de la formule ni une 
+démonstration de sa supériorité sur les modèles de référence.
+Conclusion générale
+La séparation entre dépendance critique, exposition, concentration structurelle 
+et adaptation est explicitement définie.
+Le risque de double comptage entre K(t) et A_eff(t) dispose d&#x27;une règle de 
+traitement renforcée par l&#x27;examen des dépendances communes entre solutions 
+alternatives.
+La perturbation, la vulnérabilité, la réponse adaptative, les conséquences et la 
+récupération sont distinguées dans une chaîne d&#x27;analyse cohérente.
+La construction des indicateurs prend en compte les capacités de référence, les 
+seuils minimaux de fonctionnement acceptable, les ressources effectivement 
+mobilisables et la soutenabilité des réponses adaptatives.
+La temporalité de l&#x27;évaluation est précisée par la distinction entre date de 
+référence, scénario, horizon de vulnérabilité et période de récupération.
+Les règles de normalisation, de pondération, de calcul, de comparaison et de 
+réfutation sont renforcées.
+Les premières applications exploratoires, notamment les cas d&#x27;Ormuz, du canal de 
+Suez et des câbles sous-marins de la mer Rouge, ont permis d&#x27;identifier des 
+difficultés concrètes de mesure et des exigences supplémentaires de 
+spécification.
+Le cas de la mer Rouge montre en particulier que des adaptations peuvent être 
+empiriquement observées même lorsque leur efficacité exacte ne peut pas encore 
+être mesurée. Cette situation ne doit plus empêcher la production d&#x27;un score 
+provisoire clairement qualifié et accompagné de ses limites.
+La méthode dispose ainsi d&#x27;une spécification opérationnelle consolidée et 
+enrichie pour le Cycle 2.
+Statut final : méthode opérationnelle spécifiée, applications empiriques 
+exploratoires réalisées, scores provisoires possibles lorsque les données le 
+permettent, validation diagnostique et prédictive générale non acquise.
+La cohérence conceptuelle et opérationnelle est renforcée. La confrontation 
+empirique est engagée. La validité générale reste à établir.
+───
+IFH-TEC — Laboratoire ARIANE
+Protocole ARI v1.2 — Cycle 2</article><nav class="page-nav" aria-label="Navigation"><a href="cadre-02-vulnerabilite.html">← Partie précédente</a><a href="index.html">⌂ Retour au site</a><a href="cadre-04-etude-afrique-est.html">Partie suivante →</a></nav></main><footer>Cadre — La Religion du Bien</footer></body></html>

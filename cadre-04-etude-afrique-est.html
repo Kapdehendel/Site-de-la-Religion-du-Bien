@@ -1,0 +1,444 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Étude comparative des réseaux Internet en Afrique de l’Est — Cadre</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#101c2a;color:#e8eaf0;font:17px/1.85 system-ui,-apple-system,'Segoe UI',sans-serif}a{color:#f1d393}a:hover{color:#fff}header{background:#0c1520;border-bottom:1px solid #b8945150;padding:15px 5%;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}header a,.page-nav a{text-decoration:none;border:1px solid #b8945170;border-radius:9px;padding:8px 13px;background:#192c3f}header strong{color:#f3d795}.hero{padding:62px 22px 45px;text-align:center;background:radial-gradient(ellipse at top,#28445c,#101c2a 72%)}.hero .kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#d9b56e}h1{font:clamp(30px,5vw,54px)/1.2 Georgia,serif;color:#f4dca7;max-width:900px;margin:14px auto}.hero p{color:#b8c7d6}main{max-width:950px;margin:auto;padding:30px 22px 75px}.source{white-space:pre-wrap;overflow-wrap:anywhere;font:17px/1.82 system-ui,-apple-system,'Segoe UI',sans-serif;background:#17283a;border:1px solid #b8945140;border-radius:16px;padding:clamp(20px,5vw,52px)}.page-nav{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:24px 0}.page-nav a{display:inline-block}footer{text-align:center;color:#b8c7d6;padding:25px;border-top:1px solid #b8945140}@media(max-width:600px){.source{font-size:16px;line-height:1.7}}</style></head><body><header><strong>✦ La Religion du Bien</strong><a href="index.html">⌂ Retour au site</a></header><section class="hero"><div class="kicker">Cadre · Partie 04 / 04</div><h1>Étude comparative des réseaux Internet en Afrique de l’Est</h1><p>Texte intégral issu du document original « Cadre »</p></section><main><nav class="page-nav" aria-label="Navigation"><a href="cadre-03-consolidation.html">← Partie précédente</a><a href="index.html">⌂ Retour au site</a></nav><article class="source">IV. IFH-TEC — Étude comparative de la vulnérabilité des réseaux Internet en 
+Afrique de l&#x27;Est
+Coupures simultanées des câbles sous-marins SEACOM et EASSy du 12 mai 2024
+
+Laboratoire : ARIANE / IFH-TEC
+Cycle : 2
+Protocole : ARI v1.2
+Méthode : V(t) — évaluation de la vulnérabilité d&#x27;un système face à un scénario 
+de perturbation
+Cas étudié : Tanzanie, Kenya et Rwanda
+Date de consolidation de l&#x27;étude : 6 novembre 2026
+Statut : étude empirique exploratoire, avec estimations structurelles par proxys 
+et validation quantitative incomplète.
+ 
+───
+ 
+1. Objet de l&#x27;étude
+Cette étude examine les conséquences des dommages simultanés subis par les 
+câbles sous-marins SEACOM et EASSy au large du KwaZulu-Natal, en Afrique du Sud, 
+le 12 mai 2024.
+Les réparations des câbles ont été achevées le 3 juin 2024.
+L&#x27;objectif est d&#x27;étudier comment une perturbation commune affecte différemment 
+trois systèmes nationaux présentant des structures de dépendance, des 
+possibilités de redondance et des capacités d&#x27;adaptation distinctes.
+Les trois pays retenus sont :
+• La Tanzanie, directement raccordée à plusieurs câbles sous-marins, dont deux 
+ont été touchés.
+• Le Kenya, disposant d&#x27;un nombre plus important de câbles et de possibilités de 
+redondance.
+• Le Rwanda, pays enclavé qui dépend de liaisons terrestres transfrontalières 
+pour accéder aux infrastructures sous-marines internationales.
+L&#x27;étude vise à confronter empiriquement la méthode V(t), et plus 
+particulièrement sa capacité à distinguer la vulnérabilité structurelle de 
+l&#x27;efficacité réelle des adaptations.
+Il ne s&#x27;agit pas de mesurer une probabilité d&#x27;effondrement d&#x27;Internet, mais 
+d&#x27;évaluer la vulnérabilité des fonctions et des capacités d&#x27;un système face à un 
+scénario de perturbation défini.
+2. Référentiel méthodologique
+L&#x27;étude utilise la formule candidate de V(t), conformément à la spécification 
+opérationnelle consolidée pour IFH-TEC Cycle 2 et ARI v1.2.
+La vulnérabilité structurelle est définie par :
+[ V_s(t)=\frac{D_{\mathrm{dep}}(t)+E(t)+K(t)}{3} ]
+La vulnérabilité après prise en compte de l&#x27;adaptation est définie par :
+
+[ V(t)=V_s(t)\times[1-A_{\mathrm{eff}}(t)] ]
+Les quatre composantes sont :
+• (D_{\mathrm{dep}}) : dépendance critique du système à des ressources, 
+infrastructures ou acteurs indispensables.
+• (E) : exposition des fonctions essentielles au scénario de perturbation.
+• (K) : concentration structurelle, déficit de redondance et dépendances 
+communes.
+• (A_{\mathrm{eff}}) : efficacité adaptative réellement mobilisée et capacité 
+effectivement maintenue grâce à cette adaptation.
+Les composantes sont théoriquement normalisées entre 0 et 1.
+La pondération égale des trois premières composantes et la réduction 
+multiplicative par l&#x27;adaptation constituent des hypothèses opérationnelles à 
+tester. Elles ne sont pas considérées comme des lois démontrées.
+Une distinction fondamentale est conservée :
+La présence d&#x27;une solution alternative, son activation opérationnelle et sa 
+capacité réelle à préserver un service sont trois niveaux de preuve différents.
+3. Données empiriques recueillies
+3.1. Structure des infrastructures
+Le rapport de l&#x27;Internet Society fournit les informations structurelles 
+suivantes :
+ 
+Indicateur
+Tanzanie
+Kenya
+Rwanda
+ 
+Câbles sous-marins recensés
+3
+8
+0 directement raccordé
+ 
+Câbles endommagés
+2
+2
+0 directement
+ 
+
+Réseaux locaux directement connectés à un IXP
+29 %
+30 %
+17,86 %
+ 
+Sites web populaires hébergés dans le pays
+24,9 %
+60 %
+19,6 %
+ 
+Sites populaires hébergés dans la région
+48 %
+14,8 %
+50,6 %
+ 
+Sites populaires hébergés hors région
+26,9 %
+25 %
+29,6 %
+ 
+ 
+Les proportions d&#x27;hébergement correspondent à la répartition des 1 000 sites web 
+les plus visités, et non à l&#x27;ensemble des contenus ou des volumes de trafic 
+Internet.
+Le Rwanda ne possède pas de raccordement direct à un câble sous-marin dans le 
+tableau étudié. Cela ne signifie absolument pas qu&#x27;il n&#x27;est pas exposé à une 
+perturbation de ces infrastructures.
+Son accès international dépend de liaisons terrestres passant notamment par des 
+pays voisins.
+3.2. Impacts observés
+Les observations disponibles indiquent des différences importantes entre les 
+trois pays.
+Tanzanie
+• IODA signale un niveau minimal de connectivité d&#x27;environ 39 % de la normale.
+• La durée de l&#x27;épisode IODA est indiquée à environ 38 heures.
+
+• Le rapport de l&#x27;Internet Society fait état d&#x27;une baisse de près de 50 % de la 
+connectivité nationale.
+• Le trafic local de l&#x27;échangeur TIX a diminué de près de 90 %.
+• Les itinéraires alternatifs se sont rapidement congestionnés.
+• La Tanzanie apparaît comme le pays ayant subi la dégradation la plus 
+importante parmi les trois étudiés.
+Kenya
+• IODA indique une baisse maximale d&#x27;environ 20 % de l&#x27;indicateur Active 
+Probing.
+• Le signal est progressivement revenu vers ses niveaux habituels jusqu&#x27;au 14 
+mai.
+• Les mesures BGP et Telescope ne montrent pas de baisse anormale équivalente.
+• L&#x27;utilisation du câble TEAMS comme redondance a été signalée.
+• Safaricom et Airtel ont également communiqué sur la mise en place de 
+connexions alternatives.
+Rwanda
+• IODA signale un niveau minimal d&#x27;environ 82 % de la normale.
+• La durée de l&#x27;épisode IODA est indiquée à environ deux heures.
+• L&#x27;Internet Society relève une légère baisse du trafic de l&#x27;échangeur RINEX.
+• Les services en ligne hébergés dans le cloud ont été particulièrement 
+affectés.
+• La dépendance aux liaisons terrestres transfrontalières constitue un élément 
+important de son exposition.
+Ces indicateurs ne mesurent pas tous le même phénomène. Une baisse du signal 
+Active Probing, une baisse du trafic d&#x27;un IXP et une diminution de la 
+connectivité nationale ne sont pas directement interchangeables.
+Une seconde série d&#x27;observations attribuée à NetBlocks et reproduite dans un 
+rapport de Recorded Future indique des niveaux minimaux d&#x27;environ 29 % pour la 
+Tanzanie, 89 % pour le Kenya et 81 % pour le Rwanda.
+Ces valeurs confortent le contraste général entre les pays, mais doivent rester 
+distinctes des indicateurs IODA.
+4. Construction des proxys structurels
+Les données brutes nécessaires à une mesure directe et harmonisée de chaque 
+composante n&#x27;étant pas toutes accessibles, trois indicateurs indirects ont été 
+construits.
+Ils permettent d&#x27;obtenir des estimations exploratoires, sans prétendre 
+représenter parfaitement les variables théoriques.
+4.1. Proxy de dépendance critique
+On utilise la proportion de sites populaires hébergés hors du pays :
+
+[ D_{\mathrm{dep}}^*=1-\text{part des sites hébergés dans le pays} ]
+Résultats :
+• Tanzanie : (1-0,249=0,751)
+• Kenya : (1-0,600=0,400)
+• Rwanda : (1-0,196=0,804)
+Ce proxy indique une dépendance potentielle à des ressources hébergées hors du 
+territoire national.
+Limite : la localisation des 1 000 sites populaires ne représente ni la totalité 
+du trafic, ni la criticité des services, ni les dépendances réelles des 
+fonctions essentielles.
+4.2. Proxy de concentration structurelle
+On utilise le déficit de connexion directe des réseaux locaux aux IXP :
+[ K^*=1-\text{part des réseaux directement connectés à un IXP} ]
+Résultats :
+• Tanzanie : (1-0,29=0,710)
+• Kenya : (1-0,30=0,700)
+• Rwanda : (1-0,1786=0,8214)
+Ce proxy indique une faiblesse potentielle de l&#x27;interconnexion locale directe.
+Limite : il ne mesure pas les connexions indirectes, les capacités des 
+interconnexions, les chemins internationaux ni l&#x27;indépendance réelle des routes 
+alternatives.
+Il ne constitue donc pas une mesure complète de la concentration structurelle.
+4.3. Proxy d&#x27;exposition
+Pour les deux pays directement raccordés aux câbles touchés, on utilise :
+[ E^*=\frac{\text{nombre de câbles endommagés}}{\text{nombre de câbles 
+recensés}} ]
+Résultats :
+• Tanzanie : (2/3=0,667)
+• Kenya : (2/8=0,250)
+• Rwanda : non mesurable par cet indicateur.
+Pour le Rwanda, attribuer une exposition nulle serait une erreur : son 
+exposition dépend de ses routes terrestres, des réseaux de transit et des 
+dépendances internationales.
+Il faudrait disposer d&#x27;une cartographie des itinéraires terrestres et de leurs 
+dépendances communes pour calculer un indicateur comparable.
+5. Résultats des estimations structurelles
+La formule utilisée est :
+
+[ V_s^=\frac{D_{\mathrm{dep}}^+E^+K^}{3} ]
+ 
+Composante
+Tanzanie
+Kenya
+Rwanda
+ 
+(D_{\mathrm{dep}}^*)
+0,751
+0,400
+0,804
+ 
+(E^*)
+0,667
+0,250
+Non mesuré
+ 
+(K^*)
+0,710
+0,700
+0,821
+ 
+(V_s^*)
+0,7093
+0,4500
+Non déterminé
+ 
+ 
+Les résultats exprimés sur 100 sont :
+ 
+Pays
+Indice structurel exploratoire
+
+ 
+Tanzanie
+70,93 / 100
+ 
+Kenya
+45,00 / 100
+ 
+Rwanda
+Non déterminé
+ 
+ 
+Pour le Rwanda, si l&#x27;on pose uniquement une borne mathématique (E^*\in[0;1]), on 
+obtient :
+[ V_s^*\in[0,5417;0,875] ]
+Cette fourchette n&#x27;est pas un intervalle de confiance empirique. Elle indique 
+seulement l&#x27;étendue mathématique possible lorsque l&#x27;exposition reste inconnue.
+Résultat comparatif : parmi les deux pays pour lesquels les trois proxys peuvent 
+être calculés, la Tanzanie présente une vulnérabilité structurelle estimée 
+supérieure à celle du Kenya.
+Le Rwanda présente des valeurs élevées pour les deux proxys disponibles, mais 
+son score structurel complet ne peut pas être établi.
+6. Analyse de l&#x27;adaptation et de (A_{\mathrm{eff}})
+Les observations démontrent que des réponses adaptatives ont effectivement été 
+mises en œuvre.
+Tanzanie
+Des changements de routage et des itinéraires alternatifs ont été documentés. 
+Cependant, ces itinéraires ont rapidement rencontré des congestions et ne 
+disposaient pas d&#x27;une capacité suffisante pour absorber toute la charge.
+L&#x27;adaptation est donc observée, mais son efficacité quantitative n&#x27;est pas 
+mesurée.
+Kenya
+L&#x27;utilisation de TEAMS comme solution de redondance a été signalée. Safaricom et 
+Airtel ont également communiqué sur des connexions alternatives.
+Le niveau de continuité observé est relativement élevé selon plusieurs 
+indicateurs.
+Là encore, il manque les volumes effectivement transportés par chaque itinéraire 
+alternatif et la part du trafic qui aurait été perdue sans ces adaptations.
+Rwanda
+
+Le recours aux liaisons terrestres constitue une forme de redondance indirecte.
+Toutefois, les informations disponibles ne permettent pas de mesurer précisément 
+la capacité mobilisée, les itinéraires effectivement utilisés et la quantité de 
+services préservée grâce à cette adaptation.
+Conclusion sur (A_{\mathrm{eff}})
+Les trois pays présentent des éléments d&#x27;adaptation observée, mais aucune série 
+harmonisée ne permet de calculer directement la proportion de capacité maintenue 
+grâce à l&#x27;adaptation.
+Il est donc incorrect d&#x27;assimiler :
+[ A_{\mathrm{eff}}=\text{connectivité restante} ]
+La connectivité restante peut provenir de capacités qui n&#x27;ont jamais été 
+affectées, de services locaux, de caches, d&#x27;autres routes ou de véritables 
+mécanismes de reroutage.
+Ces contributions doivent être séparées.
+7. Pourquoi aucun score V(t) complet n&#x27;est retenu
+La formule complète est :
+[ V(t)=V_s(t)\times[1-A_{\mathrm{eff}}(t)] ]
+Nous disposons de proxys structurels pour la Tanzanie et le Kenya, mais pas 
+d&#x27;une mesure suffisamment fiable de (A_{\mathrm{eff}}).
+Pour le Rwanda, l&#x27;exposition n&#x27;est pas non plus quantifiée de manière 
+satisfaisante.
+Des calculs antérieurs avaient produit :
+• Tanzanie : 43,27 / 100.
+• Kenya : 9,00 / 100.
+• Rwanda : 9,75 à 15,75 / 100.
+Ces valeurs résultaient de l&#x27;assimilation du signal IODA restant à l&#x27;efficacité 
+adaptative.
+Cette assimilation n&#x27;étant pas démontrée, ces trois valeurs sont retirées du jeu 
+des résultats V(t).
+Elles ne doivent pas être publiées comme des scores valides, ni utilisées pour 
+classer définitivement les pays.
+La correction constitue une décision méthodologique du Cycle 2.
+8. Limites de l&#x27;étude et données manquantes
+La principale limite rencontrée est l&#x27;accessibilité et l&#x27;exploitabilité des 
+données brutes.
+Trois situations doivent être distinguées :
+1. Données non publiées ou inexistantes dans les sources consultées.
+2. Données existantes, mais difficiles à récupérer ou à exploiter techniquement.
+
+3. Données accessibles, mais insuffisamment précises pour mesurer directement 
+une variable.
+Données prioritaires encore nécessaires
+A. Routage BGP
+Les archives RIPE RIS et RouteViews pourraient permettre de reconstituer les 
+changements de routes entre le 11 et le 14 mai 2024.
+Les ASN des opérateurs identifiés comprennent notamment :
+• Safaricom : AS33771.
+• Airtel Kenya : AS36926.
+• MTN Rwanda : AS36890.
+• Liquid Telecom Rwanda : AS37006.
+• KT Rwanda : AS37228.
+Les archives historiques ont été identifiées, mais leur extraction et leur 
+analyse détaillée n&#x27;ont pas été réalisées dans le cadre de cette étude.
+Un changement de chemin BGP prouverait une modification du routage, mais ne 
+donnerait pas à lui seul le débit transporté.
+B. Volumes de trafic
+Il faudrait disposer de séries comparables avant, pendant et après l&#x27;incident 
+pour :
+• les volumes entrants et sortants ;
+• les flux internationaux ;
+• les volumes transportés par les itinéraires alternatifs ;
+• les pertes de trafic ;
+• les délais de rétablissement.
+C. Capacités alternatives
+Il faudrait connaître :
+• la capacité nominale et réellement disponible des routes de substitution ;
+• le taux d&#x27;utilisation pendant l&#x27;incident ;
+• les congestions ;
+• les capacités mobilisées par les opérateurs ;
+• les volumes réellement préservés grâce aux adaptations.
+D. Dépendances terrestres du Rwanda
+Une cartographie détaillée des itinéraires, opérateurs de transit, points de 
+passage et dépendances communes est nécessaire pour mesurer son exposition.
+9. Résultats scientifiques et portée pour IFH-TEC
+
+Cette étude apporte plusieurs résultats empiriques utiles.
+Résultat 1 — La structure de dépendance compte
+La Tanzanie et le Kenya ont subi une perturbation commune, mais les conséquences 
+observées ont été très différentes.
+Le nombre de câbles, leur indépendance, les capacités de substitution et 
+l&#x27;organisation des réseaux contribuent à expliquer ces différences.
+Résultat 2 — Une redondance nominale ne garantit pas une continuité efficace
+La Tanzanie disposait de routes alternatives, mais celles-ci ont rapidement été 
+congestionnées.
+La simple existence d&#x27;une solution alternative ne suffit donc pas à démontrer 
+une adaptation efficace.
+Résultat 3 — L&#x27;interconnexion locale constitue un facteur important
+Les échanges locaux et les infrastructures de mise en cache contribuent à 
+préserver certains services même lorsque les liaisons internationales sont 
+perturbées.
+La continuité d&#x27;Internet ne dépend donc pas uniquement du nombre de câbles sous-
+marins.
+Résultat 4 — Les dépendances indirectes doivent être intégrées
+Le cas du Rwanda démontre qu&#x27;un pays sans raccordement direct à un câble sous-
+marin peut rester fortement exposé à une perturbation de ces infrastructures.
+La mesure de l&#x27;exposition doit donc porter sur les dépendances fonctionnelles 
+réelles, et non uniquement sur la localisation physique des câbles.
+Résultat 5 — La séparation entre vulnérabilité et adaptation est pertinente
+L&#x27;étude confirme l&#x27;intérêt de distinguer :
+• la dépendance structurelle ;
+• l&#x27;exposition au scénario ;
+• la concentration et le déficit de redondance ;
+• l&#x27;efficacité réelle de l&#x27;adaptation.
+Cette séparation évite notamment de confondre la continuité observée avec la 
+capacité préservée grâce à une réponse adaptative.
+10. Niveau de validation atteint
+L&#x27;évaluation de cette application exploratoire est la suivante :
+ 
+Niveau
+État
+ 
+Niveau 1 — Cohérence des définitions et calculs
+
+Partiellement atteint pour les proxys
+ 
+Niveau 2 — Confrontation aux observations empiriques
+Atteint qualitativement
+ 
+Niveau 3 — Mesure documentée des quatre composantes
+Non atteint
+ 
+Niveau 4 — Comparaison diagnostique à des modèles de référence
+Non réalisée
+ 
+Niveau 5 — Tests prédictifs indépendants
+Non réalisés
+ 
+ 
+Il ne faut donc pas présenter cette étude comme une validation complète de V(t).
+Elle constitue une application empirique exploratoire qui permet de confronter 
+les définitions du modèle à des observations réelles, de construire des 
+indicateurs indirects et d&#x27;identifier les données nécessaires à une validation 
+supérieure.
+11. Conclusion générale
+L&#x27;étude des coupures simultanées de SEACOM et EASSy du 12 mai 2024 met en 
+évidence des différences significatives de vulnérabilité entre la Tanzanie, le 
+Kenya et le Rwanda.
+La Tanzanie présente les impacts observés les plus importants et l&#x27;indice 
+structurel exploratoire le plus élevé parmi les deux pays pour lesquels le 
+calcul complet des trois proxys est possible : 70,93/100.
+Le Kenya présente un indice structurel exploratoire de 45,00/100 et des signes 
+de meilleure continuité grâce à ses possibilités de redondance.
+Le Rwanda présente une dépendance importante à des infrastructures extérieures 
+et à des liaisons terrestres transfrontalières. Son exposition ne peut cependant 
+pas être quantifiée avec les indicateurs disponibles.
+Les résultats soutiennent qualitativement l&#x27;intérêt de la méthode V(t), mais ne 
+permettent pas encore de produire trois scores complets et suffisamment fiables.
+La principale difficulté n&#x27;est plus la construction mathématique de la formule : 
+elle réside dans la disponibilité, l&#x27;accès et l&#x27;exploitation des données brutes 
+nécessaires à la mesure des variables.
+Cette difficulté ne doit pas être interprétée comme une absence de phénomène, 
+mais comme une limite de connaissance et de mesure.
+
+Le résultat scientifique à retenir est donc le suivant : la méthode V(t) a été 
+appliquée à un cas empirique réel, des proxys structurels ont été calculés, des 
+adaptations ont été observées et les limites de mesure ont été explicitement 
+identifiées. La validation quantitative complète reste ouverte.
+ 
+───
+ 
+12. Références documentaires principales
+1. Internet Society — rapport sur les perturbations des câbles sous-marins en 
+Afrique de l&#x27;Est en mai 2024, les dépendances régionales, les IXP, l&#x27;hébergement 
+et les adaptations des opérateurs.
+2. IODA — observations de connectivité et rapports d&#x27;incidents des 12–14 mai 
+2024.
+3. NetBlocks — observations de connectivité pendant les perturbations de mai 
+2024, notamment les valeurs reprises dans le rapport de Recorded Future.
+4. Recorded Future — rapport publié le 17 juillet 2025 reproduisant les 
+observations NetBlocks.
+5. RIPE NCC — documentation de BGPlay et des archives RIPE RIS.
+6. RouteViews — documentation des archives MRT et des données historiques BGP.
+7. Cloudflare Radar — documentation des séries historiques de trafic et de 
+l&#x27;API.
+Statut documentaire : les sources et les observations ont été identifiées dans 
+le cadre de la recherche. Les archives BGP et les séries brutes de trafic n&#x27;ont 
+pas été intégralement extraites ni recalculées dans cette étude.</article><nav class="page-nav" aria-label="Navigation"><a href="cadre-03-consolidation.html">← Partie précédente</a><a href="index.html">⌂ Retour au site</a></nav></main><footer>Cadre — La Religion du Bien</footer></body></html>
