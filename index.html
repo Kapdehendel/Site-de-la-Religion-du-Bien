@@ -17,6 +17,23 @@ html{scroll-padding-top:90px}body{overflow-x:hidden}
 @media(max-width:800px){.ui-sidebar{top:75px;left:0;bottom:0;border-radius:0;width:min(300px,85vw)}.ui-menu-button{top:auto;bottom:18px;left:17px}.ui-floating{bottom:18px}.ui-tools{padding:24px 20px}.ui-sidebar:not([hidden]){box-shadow:0 0 0 100vmax #101c2a77}}
 @media(prefers-reduced-motion:reduce){.ui-sidebar{transition:none}}
 </style>
+
+<style id="ariane-guide-style">
+#guide-launch{position:fixed;right:20px;bottom:22px;z-index:1002;background:#d6a45c;color:#101c2a;border:0;border-radius:40px;padding:13px 18px;font:700 14px 'DM Sans',sans-serif;box-shadow:0 9px 28px #0005;cursor:pointer}
+#guide-panel{position:fixed;right:20px;bottom:82px;z-index:1002;width:min(400px,calc(100vw - 24px));height:min(590px,calc(100dvh - 112px));display:none;flex-direction:column;border:1px solid #d6a45c;border-radius:14px;background:#fffdf9;color:#182434;box-shadow:0 20px 65px #0005;overflow:hidden;font-family:'DM Sans',sans-serif}
+#guide-panel.open{display:flex}
+#guide-head{background:#101c2a;color:#fff;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+#guide-head strong{font-size:15px}#guide-close{background:transparent;color:white;border:1px solid #ffffff66;border-radius:8px;padding:5px 10px;cursor:pointer}
+#guide-messages{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:12px}
+.guide-msg{border-radius:12px;padding:11px 13px;font-size:13px;line-height:1.6;max-width:96%;overflow-wrap:anywhere}
+.guide-user{background:#e8edf2;align-self:flex-end}.guide-bot{background:#f6f2eb;align-self:flex-start}
+.guide-msg a{color:#78501d;font-weight:700;display:block;margin-top:7px}
+#guide-form{display:flex;gap:7px;padding:12px;border-top:1px solid #e9e2d8}
+#guide-question{flex:1;min-width:0;border:1px solid #c5cbd0;border-radius:8px;padding:10px;font:inherit;font-size:13px}
+#guide-send{background:#101c2a;color:#fff;border:0;border-radius:8px;padding:9px 12px;cursor:pointer}
+#guide-notice{padding:0 13px 11px;font-size:10px;color:#647184}
+@media(max-width:560px){#guide-launch{right:12px;bottom:12px}#guide-panel{right:12px;bottom:70px}}
+</style>
 </head><body>
 <header class="site-header"><div class="nav-wrap"><a class="brand" href="#accueil"><span class="brand-mark">✦</span> La Religion <em>du Bien</em></a><nav class="main-nav"><a href="#fondements">Fondements</a><a href="#bibliotheque">Bibliothèque</a><a href="#laboratoire">IFH-TEC</a><a href="#conscience-ai">Conscience AI</a><a href="#recits">Récits</a><a href="#documents">Documents</a></nav></div></header>
 
@@ -141,4 +158,68 @@ function apply(){const q=norm(search.value);let visible=0;collections.forEach(([
 search.addEventListener('input',apply);buttons.forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;buttons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));apply()}));$('ui-reset').addEventListener('click',()=>{search.value='';filter='all';buttons.forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.filter==='all')));collections.forEach(([id])=>{const sec=$(id);sec.classList.remove('ui-collapsed');const b=sec.querySelector('.ui-expand');if(b){b.textContent='− Replier cette collection';b.setAttribute('aria-expanded','true')}});apply()});
 function progress(){const max=document.documentElement.scrollHeight-innerHeight;$('ui-progress').style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%'}window.addEventListener('scroll',progress,{passive:true});window.addEventListener('resize',progress);progress();apply();
 })();
-</script></body></html>
+</script>
+<button id="guide-launch" type="button" aria-controls="guide-panel" aria-expanded="false">✦ Demander à ARIANE</button>
+<section id="guide-panel" role="dialog" aria-label="Guide documentaire ARIANE" aria-modal="false">
+ <div id="guide-head"><strong>✦ ARIANE · Guide de la bibliothèque</strong><button id="guide-close" type="button" aria-label="Fermer le guide">✕</button></div>
+ <div id="guide-messages" role="log" aria-live="polite"></div>
+ <form id="guide-form"><input id="guide-question" type="text" maxlength="300" autocomplete="off" placeholder="Posez votre question…" aria-label="Votre question" required><button id="guide-send" type="submit">Envoyer</button></form>
+ <div id="guide-notice">Gratuit, sans compte ni IA distante. Recherche documentaire : les réponses sont des pistes de lecture, pas une conversation générative.</div>
+</section>
+<script id="ariane-guide-script">
+(function(){
+'use strict';
+const launch=document.getElementById('guide-launch'),panel=document.getElementById('guide-panel'),close=document.getElementById('guide-close'),messages=document.getElementById('guide-messages'),form=document.getElementById('guide-form'),input=document.getElementById('guide-question');
+const norm=t=>(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const stop=new Set('le la les un une des du de d au aux a et ou est sont dans sur pour par avec que qui quoi qu ce cette ces son sa ses en ne pas pourquoi comment quel quelle quels quelles peut on il elle je tu nous vous site texte article parler explique moi bien religion'.split(' '));
+const words=t=>[...new Set(norm(t).replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(w=>w.length>2&&!stop.has(w)))];
+const pages=[];
+document.querySelectorAll('#chapitres .chapter-card,#reflexions .chapter-card,#cadre-complet .chapter-card,#conscience-ai .chapter-card,#recits .story-card').forEach(card=>{
+const a=card.querySelector('a[href]'),h=card.querySelector('h3');if(!a||!h)return;
+const sec=card.closest('section[id]');const section=sec?.querySelector('h2')?.textContent||'Bibliothèque';
+pages.push({title:h.textContent.trim(),url:a.href,section,desc:card.querySelector('p')?.textContent||''});
+});
+pages.push({title:'Observatoire IFH-TEC — Prédictions, vérifications et visualisations',url:new URL('observatoire-ifh-tec.html',location.href).href,section:'Laboratoire IFH-TEC',desc:'Cycle 1, Cycle 2, graphiques, hypothèses et méthode'});
+function msg(text,kind='bot'){const d=document.createElement('div');d.className='guide-msg guide-'+kind;d.textContent=text;messages.append(d);messages.scrollTop=messages.scrollHeight;return d}
+function link(d,p){const a=document.createElement('a');a.href=p.url;a.textContent='📖 '+p.title+' ↗';if(new URL(p.url).origin!==location.origin){a.target='_blank';a.rel='noopener noreferrer'}d.append(a)}
+function rank(query,p){const qs=words(query);const title=norm(p.title),desc=norm(p.desc),section=norm(p.section);let score=0;for(const w of qs){if(title.includes(w))score+=8;if(desc.includes(w))score+=3;if(section.includes(w))score+=2}return score}
+async function excerpt(p,query){
+if(new URL(p.url).origin!==location.origin)return '';
+try{
+const ctrl=new AbortController(),timeout=setTimeout(()=>ctrl.abort(),3500);
+let response;try{response=await fetch(p.url,{signal:ctrl.signal})}finally{clearTimeout(timeout)}
+if(!response.ok)return '';
+const html=await response.text(),doc=new DOMParser().parseFromString(html,'text/html');
+doc.querySelectorAll('script,style,nav,footer,header').forEach(x=>x.remove());
+const main=doc.querySelector('article,main')||doc.body;
+const text=(main?.textContent||'').replace(/\s+/g,' ').trim();
+if(!text)return '';
+const chunks=text.match(/[^.!?]{35,260}[.!?]/g)||[];
+const tokens=words(query);
+const scored=chunks.map(c=>({c:c.trim(),s:tokens.reduce((v,w)=>v+(norm(c).includes(w)?1:0),0)})).sort((a,b)=>b.s-a.s);
+const chosen=scored.find(x=>x.s>0)?.c;
+return chosen?chosen.slice(0,270):'';
+}catch(e){return ''}
+}
+async function answer(question){
+msg(question,'user');
+const ranked=pages.map(p=>({...p,score:rank(question,p)})).sort((a,b)=>b.score-a.score);
+const matches=ranked.filter(p=>p.score>0).slice(0,5);
+if(!matches.length){const d=msg('Je n’ai pas trouvé de titre correspondant dans la bibliothèque. Essaie des mots-clés comme « souffrance », « conscience », « pivot », « IFH-TEC » ou « thérapie ».');return}
+const d=msg('Je recherche les textes correspondants…');
+const excerptText=await excerpt(matches[0],question);
+d.textContent='Voici les lectures les plus pertinentes que j’ai trouvées dans la bibliothèque :';
+if(excerptText){const p=document.createElement('p');p.textContent='Extrait du premier texte : « '+excerptText+' »';d.append(p)}
+matches.forEach(p=>link(d,p));
+const small=document.createElement('p');small.textContent='Ces résultats reposent sur les titres et des extraits disponibles, et ne constituent pas une réponse d’IA générative.';small.style.fontSize='11px';d.append(small);
+messages.scrollTop=messages.scrollHeight;
+}
+function toggle(open){panel.classList.toggle('open',open);launch.setAttribute('aria-expanded',String(open));if(open)input.focus()}
+launch.addEventListener('click',()=>toggle(!panel.classList.contains('open')));
+close.addEventListener('click',()=>toggle(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))toggle(false)});
+form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;input.value='';answer(q)});
+msg('Bonjour ! Je suis le guide documentaire ARIANE. Pose-moi une question sur le Bien, la souffrance, IFH-TEC, la conscience artificielle ou les récits. Je te proposerai les pages à lire.');
+})();
+</script>
+</body></html>
