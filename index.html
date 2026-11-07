@@ -207,6 +207,21 @@ const specialAnswers=[
   intro:'Le site propose un Observatoire IFH-TEC consacré aux cycles de recherche, aux prédictions et aux visualisations :',
   match:p=>p.url.includes('observatoire-ifh-tec.html')}
 ];
+function msg(text,kind='bot'){
+ const d=document.createElement('div');
+ d.className='guide-msg guide-'+kind;
+ d.textContent=text;
+ messages.append(d);
+ messages.scrollTop=messages.scrollHeight;
+ return d;
+}
+function link(d,p){
+ const a=document.createElement('a');
+ a.href=p.url;
+ a.textContent='📖 '+p.title+' ↗';
+ if(new URL(p.url).origin!==location.origin){a.target='_blank';a.rel='noopener noreferrer'}
+ d.append(a);
+}
 function rank(query,p){const qs=words(query);const title=norm(p.title),desc=norm(p.desc),section=norm(p.section),tags=norm(p.tags||'');let score=0;for(const w of qs){if(title.includes(w))score+=8;if(desc.includes(w))score+=3;if(section.includes(w))score+=2;if(tags.includes(w))score+=5}return score}
 async function excerpt(p,query){
 if(new URL(p.url).origin!==location.origin)return '';
