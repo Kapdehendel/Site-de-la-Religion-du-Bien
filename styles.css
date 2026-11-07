@@ -10,3 +10,92 @@
 .closing{background:linear-gradient(120deg,#1b3044,#101c2a);color:white;text-align:center}.closing-star{font-size:35px;color:var(--gold)}.closing h2{max-width:760px;margin:18px auto;font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,44px);font-weight:500;line-height:1.25}.closing p{color:#bac7d2;font-size:14px}.site-footer{background:#0b1520;color:#9eacba}.footer-inner{max-width:1100px;margin:auto;padding:22px 28px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:11px}.footer-inner a{color:var(--gold);text-decoration:none}
 @media(max-width:800px){.main-nav{gap:12px}.hero-symbol{right:-145px;opacity:.35;width:330px;height:330px}.section-heading{display:block}.story-flow{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.main-nav{display:none}.hero-content{padding:80px 22px}.hero-lead{font-size:16px}.section-shell{padding:65px 21px}.two-cards,.story-flow{grid-template-columns:1fr}.document-row{gap:12px}.download-button{padding:9px 10px;font-size:11px}}
+/* Amélioration des sept pages de lecture — à ajouter à la FIN de styles.css.
+   Ne modifie pas l'accueil : les règles ciblent les pages avec article. */
+body:has(main > article) {
+  background: linear-gradient(180deg,#101c2a 0 260px,#f6f2eb 260px 100%);
+  color:#253347;
+}
+body:has(main > article) > header {
+  max-width:960px;
+  margin:0 auto;
+  padding:34px 24px 22px;
+  color:#fff;
+  text-align:center;
+}
+body:has(main > article) > header > a {
+  color:#e9c68c;
+  text-decoration:none;
+  font-weight:700;
+}
+body:has(main > article) > header h1 {
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(2rem,5vw,3.3rem);
+  line-height:1.18;
+  font-weight:500;
+  margin:18px 0 26px;
+}
+body:has(main > article) > header nav {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:9px;
+}
+body:has(main > article) > header nav a {
+  display:inline-block;
+  color:#f6eee3;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.19);
+  border-radius:20px;
+  padding:7px 12px;
+  text-decoration:none;
+  font-size:.78rem;
+  line-height:1.4;
+}
+body:has(main > article) > header nav a:hover,
+body:has(main > article) > header nav a:focus-visible {
+  background:#d6a45c;
+  color:#101c2a;
+}
+body:has(main > article) > main {
+  width:min(100% - 32px,940px);
+  margin:26px auto 48px;
+  padding:clamp(25px,5vw,76px);
+  background:#fffdf9;
+  border:1px solid #e9e2d8;
+  border-radius:16px;
+  box-shadow:0 22px 65px rgba(16,28,42,.11);
+  min-width:0;
+}
+body:has(main > article) > main > p {
+  margin:0 0 35px;
+  color:#7b6d5b;
+  font-size:.9rem;
+  padding-bottom:18px;
+  border-bottom:1px solid #e9e2d8;
+}
+body:has(main > article) article {
+  display:block;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow-wrap:anywhere;
+  white-space:pre-wrap;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:clamp(1.08rem,1.2vw,1.22rem);
+  line-height:1.95;
+  letter-spacing:.008em;
+  color:#263246;
+  text-align:left;
+  tab-size:2;
+}
+body:has(main > article) > footer {
+  text-align:center;
+  padding:0 20px 48px;
+}
+body:has(main > article) > footer a {color:#75501f;}
+@media(max-width:600px) {
+  body:has(main > article) > header {padding:24px 16px 18px}
+  body:has(main > article) > main {width:calc(100% - 20px);padding:24px 19px}
+  body:has(main > article) article {font-size:1.07rem;line-height:1.85}
+}
