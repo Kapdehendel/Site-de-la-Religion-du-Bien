@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kapdehendel.github.io/Site-de-la-Religion-du-Bien/sitemap.xml
